@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const navItems = useMemo(() => menuConfig[role] || [], [role]);
 
  return (
-    <>
+    <div c>
       {/* Mobile top bar */}
       <div className="sm:hidden flex items-center justify-between bg-white p-4 shadow-md fixed top-0 left-0 right-0 z-50">
         <div className="text-xl font-bold text-blue-600">{brandName}</div>
@@ -182,7 +182,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
-    </>
+    </div>
   );
 };
 

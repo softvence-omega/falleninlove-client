@@ -37,8 +37,8 @@ const QuickSummaryCard: React.FC<QuickSummaryCardProps> = ({
   linkHref,
   color,
 }) => (
-  <div className="mr-6">
-    <div className="w-[275px] h-[175px] border border-orange-300 rounded-lg p-6 flex flex-col justify-between shadow-sm bg-white">
+  
+    <div className="lg:w-72 h-44 sm:w-64 border border-orange-300 rounded-lg p-6 flex flex-col justify-between shadow-sm bg-white">
       <h4 className="text-gray-700 font-medium text-2xl">{title}</h4>
       <span className={clsx("text-2xl font-bold mt-2", colorMap[color])}>
         {value}
@@ -47,7 +47,7 @@ const QuickSummaryCard: React.FC<QuickSummaryCardProps> = ({
         {linkText} →
       </a>
     </div>
-  </div>
+  
 );
 
 export default QuickSummaryCard;
