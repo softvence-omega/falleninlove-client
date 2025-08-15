@@ -116,7 +116,7 @@ const Dashboard: React.FC = () => {
           <h2 className="text-2xl text-[#6B7280] px-7 font-bold mb-4">
             Key Features
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:grid-cols-3 sm:gap-6 xl:gap-8">
+          <div className="grid  sm:grid-cols-2 md:grid-cols-2 gap-6 lg:grid-cols-3 sm:gap-6 xl:gap-8">
             {featuresData.map((item, idx) => (
               <FeatureCard
                 key={idx}

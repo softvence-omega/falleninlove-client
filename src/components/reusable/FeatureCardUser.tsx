@@ -29,8 +29,8 @@ const AiPolicyCard: React.FC<FeatureCardProps> = ({
   onClick,
 }) => {
   return (
-    <div className="w-full sm:w-80 md:w-72 lg:w-64 xl:w-60">
-      <Card className="w-98 border border-[#FDE7D7] shadow-sm rounded-lg">
+    <div className=" sm:w-56 md:w-72 lg:w-80 xl:w-96">
+      <Card className="w-full border border-[#FDE7D7] shadow-sm rounded-lg">
         <CardContent className="flex flex-col items-center text-center p-4 space-y-3">
           {/* Icon */}
           <div className="w-12 h-12 sm:w-10 sm:h-10 flex justify-center">

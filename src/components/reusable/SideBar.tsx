@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
-import { ChevronRight, ChevronDown, Home, ListChecks, FileText, File, Bookmark, LayoutDashboard, Settings, HelpCircle, Pen, HeadphonesIcon } from "lucide-react";
+import { ChevronRight, ChevronDown, Home, ListChecks, FileText, File, Bookmark, LayoutDashboard, Settings, HelpCircle, Pen, HeadphonesIcon, Menu, X } from "lucide-react";
 
 export interface NavItem {
   name: string;
@@ -13,7 +13,7 @@ interface SidebarProps {
   role?: "user" | "admin" | "superadmin";
   brandName?: string;
   className?: string;
-  widthClass?: string;
+  // widthClass?: string;
 }
 
 // Role-based menu configuration
@@ -74,9 +74,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   role = "user",
   brandName = "CareBot",
   className = "",
-  widthClass = "w-1/5",
+  // widthClass = "w-64",
 }) => {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+ const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleMenu = (name: string) =>
     setOpenMenus((prev) => ({ ...prev, [name]: !prev[name] }));
@@ -84,71 +85,104 @@ const Sidebar: React.FC<SidebarProps> = ({
   // Select menu items based on role
   const navItems = useMemo(() => menuConfig[role] || [], [role]);
 
-  return (
-    <aside
-      className={`bg-white h-screen border-r fixed left-0 top-0 z-50 ${widthClass} ${className}`}
-    >
-      <div className="p-4 text-xl font-bold text-blue-600 border-b">
-        {brandName}
+ return (
+    <>
+      {/* Mobile top bar */}
+      <div className="sm:hidden flex items-center justify-between bg-white p-4 shadow-md fixed top-0 left-0 right-0 z-50">
+        <div className="text-xl font-bold text-blue-600">{brandName}</div>
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
-      <nav className="flex flex-col gap-1 p-4">
-        {navItems.map((item, idx) => {
-          const isOpen = openMenus[item.name] || false;
 
-          if (item.children) {
+      {/* Sidebar */}
+      <aside
+        className={`bg-white h-screen border-r fixed top-0 z-40 transform transition-transform duration-300
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        sm:translate-x-0 sm:static sm:block  ${className}`}
+      >
+        {/* Desktop brand name */}
+        <div className="p-4 text-xl font-bold text-blue-600 border-b hidden sm:block">
+          {brandName}
+        </div>
+
+        {/* Mobile brand name inside sidebar */}
+        <div className="p-4 text-xl font-bold text-blue-600 border-b sm:hidden flex justify-between items-center">
+          {brandName}
+          <button onClick={() => setIsSidebarOpen(false)}>
+            <X size={20} />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-1 p-4 overflow-y-auto h-full">
+          {navItems.map((item, idx) => {
+            const isOpen = openMenus[item.name] || false;
+
+            if (item.children) {
+              return (
+                <div key={idx}>
+                  <button
+                    onClick={() => toggleMenu(item.name)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 w-full"
+                  >
+                    {item.icon}
+                    <span className="flex-1 text-left">{item.name}</span>
+                    {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                  </button>
+                  {isOpen && (
+                    <div className="ml-8 flex flex-col gap-1">
+                      {item.children.map((sub, subIdx) => (
+                        <NavLink
+                          key={subIdx}
+                          to={sub.path || "#"}
+                          onClick={() => setIsSidebarOpen(false)} // close on mobile click
+                          className={({ isActive }) =>
+                            `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
+                              isActive
+                                ? "bg-blue-50 text-teal-700"
+                                : "text-gray-500 hover:bg-gray-50"
+                            }`
+                          }
+                        >
+                          {sub.icon}
+                          {sub.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
-              <div key={idx}>
-                <button
-                  onClick={() => toggleMenu(item.name)}
-                  className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 w-full"
-                >
-                  {item.icon}
-                  <span className="flex-1 text-left">{item.name}</span>
-                  {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                </button>
-                {isOpen && (
-                  <div className="ml-8 flex flex-col gap-1">
-                    {item.children.map((sub, subIdx) => (
-                      <NavLink
-                        key={subIdx}
-                        to={sub.path || "#"}
-                        className={({ isActive }) =>
-                          `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
-                            isActive
-                              ? "bg-blue-50 text-teal-700"
-                              : "text-gray-500 hover:bg-gray-50"
-                          }`
-                        }
-                      >
-                        {sub.icon}
-                        {sub.name}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <NavLink
+                key={idx}
+                to={item.path || "#"}
+                onClick={() => setIsSidebarOpen(false)}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2 rounded-md font-medium ${
+                    isActive
+                      ? "bg-blue-100 text-teal-700"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`
+                }
+              >
+                {item.icon}
+                {item.name}
+              </NavLink>
             );
-          }
+          })}
+        </nav>
+      </aside>
 
-          return (
-            <NavLink
-              key={idx}
-              to={item.path || "#"}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 shadow-r-md rounded-md font-medium ${
-                  isActive
-                    ? "bg-blue-100 text-teal-700"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`
-              }
-            >
-              {item.icon}
-              {item.name}
-            </NavLink>
-          );
-        })}
-      </nav>
-    </aside>
+      {/* Overlay for mobile when sidebar is open */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 sm:hidden z-30"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+    </>
   );
 };
 
