@@ -85,10 +85,6 @@ const PolicyCards: React.FC<PolicyCardsProps> = ({}) => {
   
 ];
 
-const handleClick = (id: number | string )=>{
-  setActivePolicyId(id);
-}
-
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }} className="min-h-screen mx-auto">
     <div className="grid grid-cols-5 gap-0 min-h-screen">
