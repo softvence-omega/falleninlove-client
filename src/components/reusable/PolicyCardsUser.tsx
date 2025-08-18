@@ -12,6 +12,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import Sidebar, { NavItem } from "./SideBar";
 import { Bookmark, File, FileText, Home, LayoutDashboard, ListChecks, Settings } from "lucide-react";
 import PolicyActionButton from "./ButtonAll";
+import { policies } from "@/lib/dashboardUserData";
 
 
 interface Policy {
@@ -32,41 +33,7 @@ interface PolicyCardsProps {
 const PolicyCards: React.FC<PolicyCardsProps> = ({}) => {
       const [activePolicyId, setActivePolicyId] = useState<number | string | null>(null);
 
-    const policies = [
-    {
-      id: 1,
-      title: "Medication Management Policy",
-      description: "Outlines procedures for safe medication administration and storage",
-      category: "Care",
-      delivery: "Delivery",
-      lastUpdated: "2024-06-15",
-      isPrimary: true,
-    },
-    {
-      id: 2,
-      title: "Medication Management Policy",
-      description: "Outlines procedures for safe medication administration and storage",
-      category: "Care",
-      delivery: "Delivery",
-      lastUpdated: "2024-06-15",
-    },
-    {
-      id: 3,
-      title: "Medication Management Policy",
-      description: "Outlines procedures for safe medication administration and storage",
-      category: "Care",
-      delivery: "Delivery",
-      lastUpdated: "2024-06-15",
-    },
-    {
-      id: 4,
-      title: "Medication Management Policy",
-      description: "Outlines procedures for safe medication administration and storage",
-      category: "Care",
-      delivery: "Delivery",
-      lastUpdated: "2024-06-15",
-    },
-  ];
+    
 
   const navItems: NavItem[] = [
   { name: "Home Dashboard", icon: <Home size={18} />, path: "/" },
@@ -84,10 +51,6 @@ const PolicyCards: React.FC<PolicyCardsProps> = ({}) => {
   { name: "Settings", icon: <Settings size={18} />, path: "/settings" },
   
 ];
-
-const handleClick = (id: number | string )=>{
-  setActivePolicyId(id);
-}
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }} className="min-h-screen mx-auto">

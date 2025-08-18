@@ -12,7 +12,7 @@ import Form from "@/pages/Form";
 import Services from "@/pages/Services";
 
 import PolicyCards from "@/components/reusable/PolicyCardsUser";
-import Dashboard from "@/pages/HomeDashboard";
+import Dashboard from "@/pages/HomeDashboardUser";
 
 
 
