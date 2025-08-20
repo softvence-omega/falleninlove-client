@@ -1,104 +1,66 @@
-import UserAvatar from "@/ui/UserAvatar";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { logout } from "@/store/Slices/AuthSlice/authSlice";
+import { Link } from "react-router-dom";
+import logo from "../assets/CompliancePageAdmin/logo.png";
 
 const Navbar: React.FC = () => {
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
-  const dispatch = useAppDispatch();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
   return (
-    <nav className="bg-website-color-green shadow-lg">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="bg-white shadow">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 mx-2 sm:mx-6 md:mx-8 lg:mx-12">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="text-white text-2xl font-bold">
-              MyApp
-            </Link>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4">
+          <div className="flex items-center space-x-2">
+            <img width={40} className="sm:w-[45px] md:w-[50px]" src={logo} alt="logo" />
             <Link
               to="/"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+              className="text-[#FF715B] text-xl sm:text-2xl md:text-3xl font-bold"
             >
-              Home
+              CareBot
             </Link>
-            <Link
-              to="/about"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              About
-            </Link>
-            <Link
-              to="/policyadmin"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Policy Admin
-            </Link>
-            <Link
-              to="/services"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Services
-            </Link>
-             <Link
-              to="/userdash"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              User Dashboard
-            </Link>
-            <Link
-              to="/contact"
-              className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Contacts
-            </Link>
-
-            <Popover>
-              <PopoverTrigger>
-                <UserAvatar userName="Mahim" />
-              </PopoverTrigger>
-              <PopoverContent className="mr-3 bg-website-color-darkGray border-none text-white">
-                <Button
-                  onClick={handleLogout}
-                  className="bg-website-color-lightGray text-black w-full"
-                >
-                  Logout
-                </Button>
-              </PopoverContent>
-            </Popover>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          {/* Desktop Menu (shown only lg and up) */}
+          <div className="hidden lg:flex space-x-2 xl:space-x-4">
+            <Link to="/" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              About Us
+            </Link>
+            <Link to="/about" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              Feature
+            </Link>
+            <Link to="/policyadmin" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              Testimonials
+            </Link>
+            <Link to="/services" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              Blog
+            </Link>
+            <Link to="/userdash" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              FAQ
+            </Link>
+            <Link to="/contact" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+              Contact
+            </Link>
+            <Link to="/contact" className="text-white bg-[#2CBCA4] px-2 xl:px-3 py-2 rounded-md font-bold">
+              User Login
+            </Link>
+            <Link to="/contact" className="text-white bg-[#FF715B] px-2 xl:px-3 py-2 rounded-md font-bold">
+              Admin Login
+            </Link>
+          </div>
+
+          {/* Mobile/Tablet Menu Button (shown below lg) */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
               type="button"
-              className="text-white hover:text-gray-300 focus:outline-none"
+              className="text-black hover:text-gray-500 focus:outline-none"
             >
               <svg
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -124,33 +86,33 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile/Tablet Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              to="/"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Home
+        <div className="lg:hidden bg-white border-t shadow-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-4">
+            <Link to="/" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+              About Us
             </Link>
-            <Link
-              to="/about"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
+            <Link to="/about" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+              Feature
             </Link>
-            <Link
-              to="/services"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Services
+            <Link to="/policyadmin" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+              Testimonials
             </Link>
-            <Link
-              to="/contact"
-              className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
-            >
+            <Link to="/services" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+              Blog
+            </Link>
+            <Link to="/userdash" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+              FAQ
+            </Link>
+            <Link to="/contact" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
               Contact
+            </Link>
+            <Link to="/contact" className="block  text-white bg-[#2CBCA4] px-3 py-2 rounded-md font-bold">
+              User Login
+            </Link>
+            <Link to="/contact" className="block text-white bg-[#FF715B] px-3 py-2 rounded-md font-bold">
+              Admin Login
             </Link>
           </div>
         </div>
