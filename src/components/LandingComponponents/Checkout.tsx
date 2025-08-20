@@ -16,7 +16,7 @@ export default function Checkout() {
       </div>
 
       {/* Blog Posts Container */}
-      <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+      <div className="flex flex-col lg:flex-row  gap-16 w-full px-6">
         {/* Main Blog Post Card */}
         <div className="bg-gray-100 rounded-xl shadow-lg overflow-hidden flex-1">
           <img src={checkout1} alt="Main Blog Post" className="w-full h-auto object-cover" />

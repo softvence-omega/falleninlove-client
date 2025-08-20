@@ -7,7 +7,7 @@ export default function FeedBack() {
 
 
   return (
-    <section className="bg-gray-800 py-16 px-4 md:px-8 text-white">
+    <section className="bg-[#454F5B] py-16 px-4 md:px-8 text-white">
       {/* Section Heading */}
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-2">Feedback From Our Valued Users</h2>
