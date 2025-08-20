@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
               to="/contact"
               className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
             >
-              Contact
+              Contacts
             </Link>
 
             <Popover>
