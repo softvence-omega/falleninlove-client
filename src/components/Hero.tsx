@@ -10,14 +10,14 @@ export default function Hero() {
       <img
         src={bgBlur}
         alt="blur background"
-        className="absolute bottom-0 left-0 w-full h-[300px] object-cover pointer-events-none select-none"
+        className="absolute bottom-0 opacity-80 left-0 w-full h-[300px] object-cover pointer-events-none select-none"
       />
 
       {/* Background Images */}
       <img
         src={circleBg}
         alt="circle background"
-        className="absolute left-0 top-0 w-[300px] sm:w-[400px] lg:w-[500px] opacity-70 pointer-events-none select-none"
+        className="absolute left-0 top-2 w-[300px] sm:w-[400px] lg:w-[500px] opacity-70 pointer-events-none select-none"
       />
       <img
         src={gridBg}
