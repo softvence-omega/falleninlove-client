@@ -44,7 +44,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/policyadmin",
-        element: <PolicyCards />,
+        element: <PolicyCards policies={[]} />,
       },
       {
         path: "/form",
