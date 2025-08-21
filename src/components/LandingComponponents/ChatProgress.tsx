@@ -12,16 +12,16 @@ type FeatureCardProps = {
 const FeatureCard: React.FC<FeatureCardProps> = ({ percentage, label }) => {
   return (
     <div className="flex flex-col items-center p-4">
-      <div className="w-28 h-28">
+      <div className="w-30 h-30">
         <CircularProgressbar
           value={percentage}
           text={`${percentage}%`}
           strokeWidth={10}
           styles={buildStyles({
             pathColor: "#FC6F54",
-            trailColor: "#E5E7EB",
+            trailColor: "#6B7280",
             textColor: "#6B7280",
-            strokeLinecap: "round",
+            strokeLinecap: "square",
           })}
         />
       </div>
