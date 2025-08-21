@@ -11,7 +11,7 @@ export default function FeedBack() {
       {/* Section Heading */}
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-2">Feedback From Our Valued Users</h2>
-        <p className="text-gray-400 text-lg">
+        <p className="text-[#A3D6BB] text-lg">
           Our clients aren't just business owners; they're builders, innovators, and visionaries:
         </p>
       </div>
