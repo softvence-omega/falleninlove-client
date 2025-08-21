@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Menu (shown only lg and up) */}
           <div className="hidden lg:flex space-x-2 xl:space-x-4">
-            <Link to="/" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link to="/about" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
               About Us
             </Link>
             <Link to="/about" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
