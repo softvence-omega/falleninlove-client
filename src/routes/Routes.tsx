@@ -17,6 +17,13 @@ import PolicyCards from "@/components/reusable/PolicyCardsUser";
 import Procedure from "@/components/Procedure";
 import Documents from "@/components/Documents";
 import Bookmarks from "@/components/Bookmarks";
+import AiPolicyUserDash from "@/components/AiPolicyUserDash";
+import VoiceActivate from "@/components/VoiceActivate";
+import Training from "@/components/Training";
+import EmergencyAccess from "@/components/EmergencyAccess";
+import SurveyWellbeing from "@/components/SurveyWellbeing";
+import Settings from "@/components/Settings";
+import Supports from "@/components/Supports";
 
 const routes = createBrowserRouter([
   {
@@ -41,6 +48,13 @@ const routes = createBrowserRouter([
           {path:'procedures', element:<Procedure/>},
           {path:'documents', element:<Documents/>},
           {path:'bookmarks', element:<Bookmarks />},
+          {path:"ai-poilicy-assistant",element:<AiPolicyUserDash/>},
+          {path:"voice-activate-companion",element:<VoiceActivate/>},
+          {path:"induction-training",element:<Training/>},
+          {path:"emergency-access",element:<EmergencyAccess/>},
+          {path:"survey-well-being",element:<SurveyWellbeing/>},
+          {path:"settings",element:<Settings/>},
+          {path:"supports",element:<Supports/>},
         ],
       },
 
