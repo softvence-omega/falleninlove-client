@@ -9,7 +9,7 @@ const HomeDashboardUser: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "'Poppins', sans-serif" }}
-      className="min-h-screen m-0 mt-16"
+      className="min-h-screen m-0 mt-16 "
     >
       <div className="bg-gray-50 p-6 min-h-screen">
         <h1 className="text-4xl text-[#2D2D2D] px-10 font-bold mb-6">

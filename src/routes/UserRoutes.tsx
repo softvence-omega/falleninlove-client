@@ -8,6 +8,13 @@ const UserRoute: React.FC = () => {
     <div className="flex min-h-screen mt-16">
       <Sidebar role="user" brandName="CareBot" />
 
+    <div className="flex min-h-screen ">
+      {/* Sidebar */}
+      <aside className="hidden lg:block w-64 bg-white shadow-lg mt-5">
+        <Sidebar role="user" brandName="CareBot" className="h-full" />
+      </aside>
+
+
       {/* Main Content */}
       <main className="flex-1 bg-gray-50 p-6">
         <Outlet />
