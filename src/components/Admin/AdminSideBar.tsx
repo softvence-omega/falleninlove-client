@@ -63,7 +63,7 @@ const menuConfig: Record<string, NavItem[]> = {
   ],
 };
 
-const Sidebar: React.FC<SidebarProps> = ({
+const AdminSideBar: React.FC<SidebarProps> = ({
   role = "user",
   className = "",
 }) => {
@@ -325,4 +325,4 @@ const Sidebar: React.FC<SidebarProps> = ({
   );
 };
 
-export default Sidebar;
+export default AdminSideBar;

@@ -1,16 +1,26 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-import type { RootState } from "../store/store";
+// src/routes/UserRoute.tsx
+import React from "react";
+import { Outlet } from "react-router-dom";
+import AdminSideBar from "@/components/Admin/AdminSideBar";
 
-const AdminRoute = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
+const AdminRoute: React.FC = () => {
+  return (
+    <>
+      {/* Navbar */}
+      {/* <UserNavbar /> */}
 
-  // Check if the user is logged in and is an admin
-  if (!user || user.role == "admin") {
-    return <Navigate to="/login" replace />;
-  }
+      {/* Main Dashboard Layout */}
+      <div className="flex min-h-screen mt-16">
+        {/* Sidebar */}
+        <AdminSideBar role="admin" />
 
-  return <Outlet />;
+        {/* Main Content (fills remaining space) */}
+        <main className="flex-1 p-6">
+          <Outlet />
+        </main>
+      </div>
+    </>
+  );
 };
 
 export default AdminRoute;

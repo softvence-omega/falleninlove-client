@@ -1,3 +1,81 @@
+// import { createBrowserRouter } from "react-router-dom";
+// import App from "../App";
+// import About from "../pages/About";
+// import Contact from "../pages/Contact";
+// import NotFound from "../pages/NotFound";
+// import Home from "../pages/Home";
+// import AdminRoute from "./AdminRoutes";
+// import AdminDashboard from "@/pages/Admin/AdminDashboard";
+// import Login from "@/pages/Login";
+// import Signup from "@/pages/Signup";
+// import Form from "@/pages/Form";
+// import Services from "@/pages/Services";
+
+// import PolicyCards from "@/components/reusable/PolicyCardsUser";
+// import Dashboard from "@/pages/HomeDashboardUser";
+
+
+
+// const routes = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     children: [
+//       {
+//         path: "/",
+//         element: <Home />,
+//       },
+//       {
+//         path: "/about",
+//         element: <About />,
+//       },
+//       {
+//         path: "/contact",
+//         element: <Contact />,
+//       },
+//       {
+//         path: "/services",
+//         element: <Services />,
+//       },
+//       {
+//         path: "/userdash",
+//         element: <Dashboard/>,
+       
+//       },
+//       {
+//         path: "/policyadmin",
+//         element: <PolicyCards />,
+//       },
+//       {
+//         path: "/form",
+//         element: <Form />,
+//       },
+//       {
+//         path: "/login",
+//         element: <Login />,
+//       },
+//       {
+//         path: "/signup",
+//         element: <Signup />,
+//       },
+//       {
+//         path: "/admin",
+//         element: <AdminRoute />, 
+//         children: [
+//           { path: "", element: <AdminDashboard /> }, // Admin Dashboard
+//         ],
+//       },
+//     ],
+//   },
+//   {
+//     path: "*",
+//     element: <NotFound />,
+//   },
+// ]);
+
+// export default routes;
+
+
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import About from "../pages/About";
@@ -38,8 +116,9 @@ const routes = createBrowserRouter([
       { path: "/form", element: <Form /> },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
-
-      {
+    ],
+  },
+  {
         path: "/userdash",
         element: <UserRoutes />,
         children: [
@@ -57,17 +136,14 @@ const routes = createBrowserRouter([
           {path:"supports",element:<Supports/>},
         ],
       },
-
-      // 🔹 Admin Dashboard Routes
-      {
+         {
         path: "/admin",
         element: <AdminRoute />,
         children: [
           { path: "", element: <AdminDashboard /> },
         ],
       },
-    ],
-  },
+      // 🔹 Admin Dashboard Routes
   { path: "*", element: <NotFound /> },
 ]);
 
