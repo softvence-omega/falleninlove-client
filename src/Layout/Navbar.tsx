@@ -10,12 +10,17 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow">
+    <nav className="bg-white shadow fixed top-0 left-0 w-full z-50">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 mx-2 sm:mx-6 md:mx-8 lg:mx-12">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img width={40} className="sm:w-[45px] md:w-[50px]" src={logo} alt="logo" />
+            <img
+              width={40}
+              className="sm:w-[45px] md:w-[50px]"
+              src={logo}
+              alt="logo"
+            />
             <Link
               to="/"
               className="text-[#FF715B] text-xl sm:text-2xl md:text-3xl font-bold"
@@ -24,35 +29,64 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu (shown only lg and up) */}
+          {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-2 xl:space-x-4">
-            <Link to="/about" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/"
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               About Us
             </Link>
-            <Link to="/about" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/about"
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               Feature
             </Link>
-            <Link to="/policyadmin" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/policyadmin"
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               Testimonials
             </Link>
-            <Link to="/services" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/services"
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               Blog
             </Link>
-            <Link to="/userdash" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/userdash"
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               FAQ
             </Link>
-            <Link to="/contact" className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold">
+            <button
+              onClick={() => {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               Contact
-            </Link>
-            <Link to="/contact" className="text-white bg-[#2CBCA4] px-2 xl:px-3 py-2 rounded-md font-bold">
+            </button>
+            <Link
+              to="/contact"
+              className="text-white bg-[#2CBCA4] px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               User Login
             </Link>
-            <Link to="/contact" className="text-white bg-[#FF715B] px-2 xl:px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/contact"
+              className="text-white bg-[#FF715B] px-2 xl:px-3 py-2 rounded-md font-bold"
+            >
               Admin Login
             </Link>
           </div>
 
-          {/* Mobile/Tablet Menu Button (shown below lg) */}
+          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
@@ -86,32 +120,56 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile/Tablet Dropdown Menu */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-t shadow-lg">
+        <div className="lg:hidden bg-white border-t shadow-lg absolute top-16 left-0 w-full z-40">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-4">
-            <Link to="/" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               About Us
             </Link>
-            <Link to="/about" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/about"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               Feature
             </Link>
-            <Link to="/policyadmin" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/policyadmin"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               Testimonials
             </Link>
-            <Link to="/services" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/services"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               Blog
             </Link>
-            <Link to="/userdash" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/userdash"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               FAQ
             </Link>
-            <Link to="/contact" className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/contact"
+              className="block text-black hover:bg-website-color-lightGray px-3 py-2 rounded-md font-bold"
+            >
               Contact
             </Link>
-            <Link to="/contact" className="block  text-white bg-[#2CBCA4] px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/contact"
+              className="block text-white bg-[#2CBCA4] px-3 py-2 rounded-md font-bold"
+            >
               User Login
             </Link>
-            <Link to="/contact" className="block text-white bg-[#FF715B] px-3 py-2 rounded-md font-bold">
+            <Link
+              to="/contact"
+              className="block text-white bg-[#FF715B] px-3 py-2 rounded-md font-bold"
+            >
               Admin Login
             </Link>
           </div>
