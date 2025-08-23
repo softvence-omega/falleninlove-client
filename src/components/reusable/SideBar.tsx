@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  ChevronRight,
   ChevronDown,
   Menu,
   X,
@@ -14,6 +13,10 @@ import {
   HeartPulse,
   Globe,
   HelpCircle,
+  FileCheck,
+  Cog,
+  FolderOpen,
+  Bookmark,
 } from "lucide-react";
 
 export interface NavItem {
@@ -21,6 +24,7 @@ export interface NavItem {
   icon: React.ReactNode;
   path?: string;
   children?: NavItem[];
+  badge?: string;
 }
 
 interface SidebarProps {
@@ -31,207 +35,291 @@ interface SidebarProps {
 
 const menuConfig: Record<string, NavItem[]> = {
   user: [
-    { name: "Home Dashboard", icon: <Home size={18} />, path: "/userdash" },
+    { name: "Home Dashboard", icon: <Home size={20} />, path: "/userdash" },
     {
       name: "Policies & Procedures Suite",
-      icon: <FileText size={18} />,
+      icon: <FileText size={20} />,
       children: [
-        { name: "Policies", icon: <ChevronRight size={14} />, path: "policies" },
-        { name: "Procedures", icon: <ChevronRight size={14} />, path: "procedures" },
-        { name: "Documents", icon: <ChevronRight size={14} />, path: "documents" },
-        { name: "Bookmarks", icon: <ChevronRight size={14} />, path: "bookmarks" },
+        { name: "Policies", icon: <FileCheck size={18} />, path: "policies" },
+        { name: "Procedures", icon: <Cog size={18} />, path: "procedures" },
+        { name: "Documents", icon: <FolderOpen size={18} />, path: "documents" },
+        { name: "Bookmarks", icon: <Bookmark size={18} />, path: "bookmarks" },
       ],
     },
-    { name: "AI Policy Assistant", icon: <Bot size={18} />, path: "ai-policy-assistant" },
-    { name: "Voice-Activated Companion", icon: <Mic size={18} />, path: "voice-activate-companion" },
-    { name: "Induction & Training", icon: <BookOpen size={18} />, path: "induction-training" },
-    { name: "Emergency Quick Access", icon: <Shield size={18} />, path: "emergency-access" },
-    { name: "Survey & Wellbeing", icon: <HeartPulse size={18} />, path: "survey-well-being" },
-    { name: "Language & Accessibility", icon: <Globe size={18} />, path: "settings" },
-    { name: "Help & Support", icon: <HelpCircle size={18} />, path: "supports" },
+    { name: "AI Policy Assistant", icon: <Bot size={20} />, path: "ai-policy-assistant" },
+    { name: "Voice-Activated Companion", icon: <Mic size={20} />, path: "voice-activate-companion" },
+    { name: "Induction & Training", icon: <BookOpen size={20} />, path: "induction-training" },
+    { name: "Emergency Quick Access", icon: <Shield size={20} />, path: "emergency-access" },
+    { name: "Survey & Wellbeing", icon: <HeartPulse size={20} />, path: "survey-well-being" },
+    { name: "Language & Accessibility", icon: <Globe size={20} />, path: "settings" },
+    { name: "Help & Support", icon: <HelpCircle size={20} />, path: "supports" },
   ],
   admin: [
-    { name: "Org Dashboard", icon: <Home size={18} />, path: "/" },
-    { name: "Document Suite", icon: <FileText size={18} />, path: "/documents" },
+    { name: "Org Dashboard", icon: <Home size={20} />, path: "/" },
+    { name: "Document Suite", icon: <FileText size={20} />, path: "/documents" },
   ],
   superadmin: [
-    { name: "Platform Dashboard", icon: <Home size={18} />, path: "/superadmin" },
+    { name: "Platform Dashboard", icon: <Home size={20} />, path: "/superadmin" },
   ],
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
   role = "user",
-  brandName = "CareBot",
   className = "",
 }) => {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const toggleMenu = (name: string) =>
     setOpenMenus((prev) => ({ ...prev, [name]: !prev[name] }));
 
   const navItems = useMemo(() => menuConfig[role] || [], [role]);
 
+  // Helper function to check if any child is active
+  const isChildActive = (children: NavItem[]) => {
+    return children.some(child => window.location.pathname === child.path);
+  };
+
   return (
     <>
-      {/* ✅ Mobile Menu / Close Icon (overlapping sidebar top-right) */}
-      <div className="fixed top-4 left-4 z-[10000] lg:hidden">
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 rounded-md  text-black shadow-lg"
-        >
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg lg:hidden"
+      >
+        {isMobileOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Mobile Sidebar */}
+      <div className={`lg:hidden ${isMobileOpen ? 'block' : 'hidden'}`}>
+        <div 
+          className="fixed inset-0 z-40 bg-black/50"
+          onClick={() => setIsMobileOpen(false)}
+        />
+        
+        <aside className="fixed top-0 left-0 z-50 w-80 h-full bg-white shadow-xl">
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b">
+              <button
+                onClick={() => setIsMobileOpen(false)}
+                className="p-2 rounded-md hover:bg-gray-100"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <nav className="flex-1 px-6 py-6 space-y-3 overflow-y-auto">
+              {navItems.map((item, idx) => {
+                const isOpen = openMenus[item.name] || false;
+
+                if (item.children) {
+                  return (
+                    <div key={idx}>
+                      <button
+                        onClick={() => toggleMenu(item.name)}
+                        className="flex items-center gap-4 w-full py-3 text-left text-gray-700 hover:text-teal-600 transition-colors"
+                      >
+                        <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                        <span className="flex-1 font-medium">{item.name}</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      {isOpen && (
+                        <div className="ml-12 space-y-2 mt-2">
+                          {item.children.map((sub, subIdx) => (
+                            <div key={subIdx} className="relative">
+                              <NavLink
+                                to={sub.path || "#"}
+                                onClick={() => setIsMobileOpen(false)}
+                                className={({ isActive }) =>
+                                  `flex items-center gap-3 py-2 font-medium transition-colors ${
+                                    isActive
+                                      ? "text-teal-600"
+                                      : "text-gray-600 hover:text-teal-600"
+                                  }`
+                                }
+                              >
+                                {({ isActive }) => (
+                                  <>
+                                    <div className="flex-shrink-0 text-gray-500">{sub.icon}</div>
+                                    {sub.name}
+                                    {isActive && (
+                                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
+                                    )}
+                                  </>
+                                )}
+                              </NavLink>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={idx} className="relative">
+                    <NavLink
+                      to={item.path || "#"}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={({ isActive }) =>
+                        `flex items-center gap-4 py-3 font-medium transition-colors ${
+                          isActive
+                            ? "text-teal-600"
+                            : "text-gray-700 hover:text-teal-600"
+                        }`
+                      }
+                    >
+                      {({ isActive }) => (
+                        <>
+                          <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                          <span>{item.name}</span>
+                          {isActive && (
+                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
+                          )}
+                        </>
+                      )}
+                    </NavLink>
+                  </div>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
       </div>
 
-      {/* ✅ Sidebar Drawer for Mobile */}
-      <div
-        className={`fixed inset-0 z-[9999] flex lg:hidden pointer-events-none ${
-          isSidebarOpen ? "pointer-events-auto" : ""
-        }`}
+      {/* Desktop Sidebar */}
+      <aside
+        className={`hidden lg:block bg-white border-r h-screen sticky top-0 transition-all duration-300 ${
+          isExpanded ? "w-72" : "w-16"
+        } ${className}`}
       >
-        {/* Overlay */}
-        <div
-          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
-            isSidebarOpen ? "opacity-100" : "opacity-0"
-          }`}
-          onClick={() => setIsSidebarOpen(false)}
-        />
-
-        {/* Sidebar Panel */}
-        <aside
-          className={`relative w-64 bg-white h-full shadow p-4 overflow-y-auto transform transition-transform duration-300 ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <div className="mb-4 flex justify-between items-center">
-            <span className="font-bold text-xl text-blue-600">{brandName}</span>
+        <div className="flex flex-col h-full">
+          {/* Header with Menu Toggle */}
+          <div className={`border-b ${isExpanded ? 'px-6 py-6' : 'px-2 py-6 flex justify-center'}`}>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+            >
+              <Menu size={20} />
+            </button>
           </div>
 
-          <nav className="flex flex-col gap-1">
-            {navItems.map((item, idx) => {
-              const isOpen = openMenus[item.name] || false;
+          {/* Navigation */}
+          <nav className={`flex-1 overflow-y-auto ${isExpanded ? 'px-6 py-6' : 'px-2 py-6'}`}>
+            <div className={`${isExpanded ? 'space-y-3' : 'space-y-2'}`}>
+              {navItems.map((item, idx) => {
+                const isOpen = openMenus[item.name] || false;
+                const hasActiveChild = item.children && isChildActive(item.children);
 
-              if (item.children) {
+                if (item.children) {
+                  if (!isExpanded) {
+                    return (
+                      <div key={idx} className="flex justify-center">
+                        <button
+                          className={`p-3 rounded-lg transition-colors ${
+                            hasActiveChild
+                              ? "bg-teal-100 text-teal-600"
+                              : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
+                          }`}
+                          title={item.name}
+                        >
+                          {item.icon}
+                        </button>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div key={idx}>
+                      <button
+                        onClick={() => toggleMenu(item.name)}
+                        className={`flex items-center gap-4 w-full py-3 text-left font-medium transition-colors ${
+                          isOpen || hasActiveChild ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
+                        }`}
+                      >
+                        <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                        <span className="flex-1">{item.name}</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      {isOpen && (
+                        <div className="ml-12 space-y-2 mt-2">
+                          {item.children.map((sub, subIdx) => (
+                            <NavLink
+                              key={subIdx}
+                              to={sub.path || "#"}
+                              className={({ isActive }) =>
+                                `flex items-center gap-3 py-2 font-medium transition-colors ${
+                                  isActive
+                                    ? "text-teal-600"
+                                    : "text-gray-600 hover:text-teal-600"
+                                }`
+                              }
+                            >
+                              <div className="flex-shrink-0 text-gray-500">{sub.icon}</div>
+                              {sub.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={idx}>
-                    <button
-                      onClick={() => toggleMenu(item.name)}
-                      className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 w-full"
-                    >
-                      {item.icon}
-                      <span className="flex-1 text-left">{item.name}</span>
-                      {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                    </button>
-                    {isOpen && (
-                      <div className="ml-6 flex flex-col gap-1">
-                        {item.children.map((sub, subIdx) => (
-                          <NavLink
-                            key={subIdx}
-                            to={sub.path || "#"}
-                            onClick={() => setIsSidebarOpen(false)}
-                            className={({ isActive }) =>
-                              `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
-                                isActive
-                                  ? "bg-blue-50 text-teal-700"
-                                  : "text-gray-500 hover:bg-gray-50"
-                              }`
-                            }
-                          >
-                            {sub.icon}
-                            {sub.name}
-                          </NavLink>
-                        ))}
+                    {!isExpanded ? (
+                      <div className="flex justify-center">
+                        <NavLink
+                          to={item.path || "#"}
+                          className={({ isActive }) =>
+                            `p-3 rounded-lg transition-colors ${
+                              isActive
+                                ? "bg-teal-100 text-teal-600"
+                                : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
+                            }`
+                          }
+                          title={item.name}
+                        >
+                          {item.icon}
+                        </NavLink>
+                      </div>
+                    ) : (
+                      <div className="relative">
+                        <NavLink
+                          to={item.path || "#"}
+                          className={({ isActive }) =>
+                            `flex items-center gap-4 py-3 font-medium transition-colors ${
+                              isActive
+                                ? "text-teal-600"
+                                : "text-gray-700 hover:text-teal-600"
+                            }`
+                          }
+                        >
+                          {({ isActive }) => (
+                            <>
+                              <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                              <span>{item.name}</span>
+                              {isActive && (
+                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
+                              )}
+                            </>
+                          )}
+                        </NavLink>
                       </div>
                     )}
                   </div>
                 );
-              }
-
-              return (
-                <NavLink
-                  key={idx}
-                  to={item.path || "#"}
-                  onClick={() => setIsSidebarOpen(false)}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2 rounded-md font-medium ${
-                      isActive
-                        ? "bg-blue-100 text-teal-700"
-                        : "text-gray-600 hover:bg-gray-100"
-                    }`
-                  }
-                >
-                  {item.icon}
-                  {item.name}
-                </NavLink>
-              );
-            })}
+              })}
+            </div>
           </nav>
-        </aside>
-      </div>
-
-      {/* ✅ Desktop Sidebar */}
-      <aside
-        className={`hidden lg:block w-64 bg-white border-r h-screen sticky top-0 ${className}`}
-      >
-        <div className="p-4 text-xl font-bold text-blue-600 border-b">{brandName}</div>
-        <nav className="flex flex-col gap-1 p-4 overflow-y-auto h-full">
-          {navItems.map((item, idx) => {
-            const isOpen = openMenus[item.name] || false;
-
-            if (item.children) {
-              return (
-                <div key={idx}>
-                  <button
-                    onClick={() => toggleMenu(item.name)}
-                    className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 w-full"
-                  >
-                    {item.icon}
-                    <span className="flex-1 text-left">{item.name}</span>
-                    {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                  </button>
-                  {isOpen && (
-                    <div className="ml-6 flex flex-col gap-1">
-                      {item.children.map((sub, subIdx) => (
-                        <NavLink
-                          key={subIdx}
-                          to={sub.path || "#"}
-                          className={({ isActive }) =>
-                            `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
-                              isActive
-                                ? "bg-blue-50 text-teal-700"
-                                : "text-gray-500 hover:bg-gray-50"
-                            }`
-                          }
-                        >
-                          {sub.icon}
-                          {sub.name}
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <NavLink
-                key={idx}
-                to={item.path || "#"}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2 rounded-md font-medium ${
-                    isActive
-                      ? "bg-blue-100 text-teal-700"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`
-                }
-              >
-                {item.icon}
-                {item.name}
-              </NavLink>
-            );
-          })}
-        </nav>
+        </div>
       </aside>
     </>
   );

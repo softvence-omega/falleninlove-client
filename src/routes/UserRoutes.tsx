@@ -7,8 +7,10 @@ import UserNavbar from "@/components/User/UserNavbar";
 const UserRoute: React.FC = () => {
   return (
     <div className="flex min-h-screen mt-16">
+      <Sidebar role="user"  />
+    <div className="flex min-h-screen ">
+     
 
-      <UserNavbar></UserNavbar>
 
 
       <aside>

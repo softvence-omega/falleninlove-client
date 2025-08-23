@@ -12,7 +12,6 @@ import Signup from "@/pages/Signup";
 import Form from "@/pages/Form";
 import Services from "@/pages/Services";
 
-import Dashboard from "@/pages/HomeDashboardUser";
 import PolicyCards from "@/components/reusable/PolicyCardsUser";
 import Procedure from "@/components/Procedure";
 import Documents from "@/components/Documents";
@@ -24,6 +23,7 @@ import EmergencyAccess from "@/components/EmergencyAccess";
 import SurveyWellbeing from "@/components/SurveyWellbeing";
 import Settings from "@/components/Settings";
 import Supports from "@/components/Supports";
+import HomeDashboardUser from "@/pages/HomeDashboardUser";
 
 const routes = createBrowserRouter([
   {
@@ -43,12 +43,12 @@ const routes = createBrowserRouter([
         path: "/userdash",
         element: <UserRoutes />,
         children: [
-          { path: "", element: <Dashboard /> },
+          { path: "", element: <HomeDashboardUser /> },
           {path:'policies', element:<PolicyCards />},
           {path:'procedures', element:<Procedure/>},
           {path:'documents', element:<Documents/>},
           {path:'bookmarks', element:<Bookmarks />},
-          {path:"ai-poilicy-assistant",element:<AiPolicyUserDash/>},
+          {path:"ai-policy-assistant",element:<AiPolicyUserDash/>},
           {path:"voice-activate-companion",element:<VoiceActivate/>},
           {path:"induction-training",element:<Training/>},
           {path:"emergency-access",element:<EmergencyAccess/>},
