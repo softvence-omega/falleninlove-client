@@ -9,39 +9,55 @@ const HomeDashboardUser: React.FC = () => {
   return (
     <div
       style={{ fontFamily: "'Poppins', sans-serif" }}
-      className="min-h-screen m-0 mt-16 "
+      className="min-h-screen w-full bg-gray-50"
     >
-      <div className="bg-gray-50 p-6 min-h-screen">
-        <h1 className="text-4xl text-[#2D2D2D] px-10 font-bold mb-6">
-          Home Dashboard
-        </h1>
+      <div className="min-h-screen p-4 sm:p-6 lg:p-8 w-full">
+        {/* Main Title */}
+        <div className="px-2 sm:px-6 lg:px-10">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl text-[#2D2D2D] font-bold mb-6">
+            Home Dashboard
+          </h1>
+        </div>
 
-        {/* Quick Summary */}
-        <div className="w-full mb-10">
-          <h2 className="text-2xl text-[#6B7280] px-10 font-bold mb-4">
-            Quick Summary
-          </h2>
-          <div className="grid justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 xl:gap-4">
-            {quickSummaryData.map((item, idx) => (
-              <QuickSummaryCard key={idx} {...item} />
-            ))}
+        {/* Quick Summary Section */}
+        <div className="w-full mb-8 sm:mb-10">
+          <div className="px-2 sm:px-6 lg:px-10">
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-[#6B7280] font-bold mb-4">
+              Quick Summary
+            </h2>
+          </div>
+          
+          <div className="px-2 sm:px-4 lg:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+              {quickSummaryData.map((item, idx) => (
+                <div key={idx} className="flex justify-center">
+                  <QuickSummaryCard {...item} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Key Features */}
+        {/* Key Features Section */}
         <div>
-          <h2 className="text-2xl text-[#6B7280] px-10 font-bold mb-4">
-            Key Features
-          </h2>
-          <div className="grid justify-items-center sm:grid-cols-2 md:grid-cols-2 gap-6 lg:grid-cols-3 sm:gap-6 xl:gap-8">
-            {featuresData.map((item, idx) => (
-              <FeatureCard
-                key={idx}
-                {...item}
-                isActive={activeIndex === idx}
-                onClick={() => setActiveIndex(idx)}
-              />
-            ))}
+          <div className="px-2 sm:px-6 lg:px-10">
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-[#6B7280] font-bold mb-4">
+              Key Features
+            </h2>
+          </div>
+          
+          <div className="px-2 sm:px-4 lg:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              {featuresData.map((item, idx) => (
+                <div key={idx} className="flex justify-center">
+                  <FeatureCard
+                    {...item}
+                    isActive={activeIndex === idx}
+                    onClick={() => setActiveIndex(idx)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

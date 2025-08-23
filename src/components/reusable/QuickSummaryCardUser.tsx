@@ -1,17 +1,3 @@
-/*  Similar cards -  
-User 
-i.
- ii.
- Quick summery [Home dashboard]
- Key Emergency contacts [Emergency Quick Access]
- Admin 
-i. Organization dashboard [Org dashboard top cards]
- Super admin  
-i.
- ii.
- Dashboard top cards [Dashboard]
- View anonymized usage report top cards [AI and Automation library] */
-
 import React from "react";
 import clsx from "clsx";
 

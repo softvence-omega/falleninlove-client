@@ -25,7 +25,7 @@ const AiPolicyCard: React.FC<FeatureCardProps> = ({
   description,
   buttonText,
   img,
-  isActive = false,
+  // isActive = false,
   onClick,
 }) => {
   return (

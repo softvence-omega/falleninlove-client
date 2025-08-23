@@ -73,13 +73,13 @@ const Navbar: React.FC = () => {
               Contact
             </button>
             <Link
-              to="/contact"
+              to="/login"
               className="text-white bg-[#2CBCA4] px-2 xl:px-3 py-2 rounded-md font-bold"
             >
               User Login
             </Link>
             <Link
-              to="/contact"
+              to="/signup"
               className="text-white bg-[#FF715B] px-2 xl:px-3 py-2 rounded-md font-bold"
             >
               Admin Login
