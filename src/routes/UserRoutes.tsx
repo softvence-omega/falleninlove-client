@@ -6,23 +6,21 @@ import UserNavbar from "@/components/User/UserNavbar";
 
 const UserRoute: React.FC = () => {
   return (
-    <div className="flex min-h-screen mt-16">
-      <Sidebar role="user"  />
-    <div className="flex min-h-screen ">
-     
+    <>
+      {/* Navbar */}
+      <UserNavbar />
 
+      {/* Main Dashboard Layout */}
+      <div className="flex min-h-screen mt-16">
+        {/* Sidebar */}
+        <Sidebar role="user" />
 
-
-      <aside>
-        <Sidebar role="user" brandName="CareBot" />
-      </aside>
-
-      {/* Main Content */}
-      <main className="flex-1  p-6">
-        <Outlet />
-      </main>
-    </div>
-
+        {/* Main Content (fills remaining space) */}
+        <main className="flex-1 p-6">
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 };
 
