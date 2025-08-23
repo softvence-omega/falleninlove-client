@@ -44,7 +44,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/policyadmin",
-        element: <PolicyCards policies={[]} />,
+        element: <PolicyCards />,
       },
       {
         path: "/form",
@@ -60,7 +60,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <AdminRoute />, // This will check if the user is an admin
+        element: <AdminRoute />, 
         children: [
           { path: "", element: <AdminDashboard /> }, // Admin Dashboard
         ],

@@ -8,11 +8,13 @@ import FAQ from "@/components/LandingComponponents/FAQ";
 import FeedBack from "@/components/LandingComponponents/FeedBack";
 import Parter from "@/components/LandingComponponents/Parter";
 import Footer from "@/Layout/Footer";
+import Navbar from "@/Layout/Navbar";
 
 
 export default function Home() {
   return (
     <div>
+      <Navbar/>
       {/* Hero section */}
        <Hero/>
        {/* parters-(sponsers) */}
@@ -30,7 +32,9 @@ export default function Home() {
        {/* FAQ section */}
        <FAQ/>
        {/* Contact section */}
-       <Contact/>
+       <section className="contact">
+        <Contact/>
+       </section>
        <Footer/>
     </div>
   )
