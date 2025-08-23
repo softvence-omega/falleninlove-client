@@ -42,7 +42,7 @@ const menuConfig: Record<string, NavItem[]> = {
         { name: "Bookmarks", icon: <ChevronRight size={14} />, path: "bookmarks" },
       ],
     },
-    { name: "AI Policy Assistant", icon: <Bot size={18} />, path: "ai-poilicy-assistant" },
+    { name: "AI Policy Assistant", icon: <Bot size={18} />, path: "ai-policy-assistant" },
     { name: "Voice-Activated Companion", icon: <Mic size={18} />, path: "voice-activate-companion" },
     { name: "Induction & Training", icon: <BookOpen size={18} />, path: "induction-training" },
     { name: "Emergency Quick Access", icon: <Shield size={18} />, path: "emergency-access" },
@@ -74,36 +74,38 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      {/* ✅ Mobile Menu Button (now top-right corner) */}
-      <div className="fixed top-4 right-4 z-[9999] lg:hidden">
+      {/* ✅ Mobile Menu / Close Icon (overlapping sidebar top-right) */}
+      <div className="fixed top-4 left-4 z-[10000] lg:hidden">
         <button
-          onClick={() => setIsSidebarOpen(true)}
-          className="p-2 rounded-md bg-gray-800 text-white shadow-lg"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="p-2 rounded-md  text-black shadow-lg"
         >
-          <Menu size={24} />
+          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* ✅ Sidebar Drawer for Mobile */}
       <div
-        className={`fixed inset-0 z-[9998] transition-transform duration-300 lg:hidden ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-0 z-[9999] flex lg:hidden pointer-events-none ${
+          isSidebarOpen ? "pointer-events-auto" : ""
         }`}
       >
         {/* Overlay */}
         <div
           className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
-            isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            isSidebarOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setIsSidebarOpen(false)}
         />
-        {/* Sidebar */}
-        <aside className="relative w-64 bg-white h-full shadow p-4 overflow-y-auto z-[10000]">
-          <div className="flex justify-between items-center mb-4">
+
+        {/* Sidebar Panel */}
+        <aside
+          className={`relative w-64 bg-white h-full shadow p-4 overflow-y-auto transform transition-transform duration-300 ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="mb-4 flex justify-between items-center">
             <span className="font-bold text-xl text-blue-600">{brandName}</span>
-            <button onClick={() => setIsSidebarOpen(false)}>
-              <X size={24} />
-            </button>
           </div>
 
           <nav className="flex flex-col gap-1">
