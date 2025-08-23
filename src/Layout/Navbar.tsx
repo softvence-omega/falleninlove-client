@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-2 xl:space-x-4">
             <Link
-              to="/"
+              to="/about"
               className="text-black hover:bg-website-color-lightGray px-2 xl:px-3 py-2 rounded-md font-bold"
             >
               About Us

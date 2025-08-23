@@ -1,11 +1,12 @@
 
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+
+import UserNavbar from "@/components/User/UserNavbar";
 
 const Layout: React.FC = () => {
   return (
     <div>
-      <Navbar />
+      <UserNavbar></UserNavbar>
       <main>
         <Outlet />
       </main>

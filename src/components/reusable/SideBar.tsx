@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
-import { ChevronRight, ChevronDown, Home, ListChecks, FileText, File, Bookmark, LayoutDashboard, Settings, HelpCircle, Pen, HeadphonesIcon, Menu, X } from "lucide-react";
+import { ChevronRight, ChevronDown, Menu, X } from "lucide-react";
 
 export interface NavItem {
   name: string;
@@ -13,60 +13,35 @@ interface SidebarProps {
   role?: "user" | "admin" | "superadmin";
   brandName?: string;
   className?: string;
-  // widthClass?: string;
 }
 
-// Role-based menu configuration
 const menuConfig: Record<string, NavItem[]> = {
-  // user sidebar
   user: [
-    { name: "Home Dashboard", icon: <Home size={18} />, path: "/userdash" },
-  {
-    name: "Policies & Procedures Suite",
-    icon: <ListChecks size={18} />, path:"/policies",
-    children: [
-      { name: "Policies", icon: <FileText size={16} />, path: "/policies/policies" },
-      { name: "Procedures", icon: <ListChecks size={16} />, path: "/procedures" },
-      { name: "Documents", icon: <File size={16} />, path: "/documents" },
-      { name: "Bookmarks", icon: <Bookmark size={16} />, path: "/bookmarks" },
-    ],
-  },
-  { name: "AI Policy Assistant", icon: <LayoutDashboard size={18} />, path: "/dashboard" },
-  { name: "Voice-Activated Companion", icon: <Settings size={18} />, path: "/settings" },
-  { name: "Induction & Training", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Emergency Quick Access", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Survey & Wellbeing", icon: <Pen size={18} />, path: "/settings" },
-    { name: "Language a7 Accessibility", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Help & Support", icon: <HelpCircle size={18} />, path: "/settings" },
+    { name: "Home Dashboard", icon: <ChevronRight />, path: "/userdash" },
+    {
+      name: "Policies & Procedures Suite",
+      icon: <ChevronRight />,
+      children: [
+        { name: "Policies", icon: <ChevronRight />, path: "policies" },
+        { name: "Procedures", icon: <ChevronRight />, path: "procedures" },
+        { name: "Documents", icon: <ChevronRight />, path: "documents" },
+        { name: "Bookmarks", icon: <ChevronRight />, path: "bookmarks" },
+      ],
+    },
+    { name: "AI Policy Assistant", icon: <ChevronRight />, path: "/dashboard" },
+    { name: "Voice-Activated Companion", icon: <ChevronRight />, path: "/settings" },
+    { name: "Induction & Training", icon: <ChevronRight />, path: "/settings" },
+    { name: "Emergency Quick Access", icon: <ChevronRight />, path: "/settings" },
+    { name: "Survey & Wellbeing", icon: <ChevronRight />, path: "/settings" },
+    { name: "Language a7 Accessibility", icon: <ChevronRight />, path: "/settings" },
+    { name: "Help & Support", icon: <ChevronRight />, path: "/settings" },
   ],
-  // admin sidebar
   admin: [
-   { name: "Org Dashboard", icon: <Home size={18} />, path: "/" },
-  {  name: "Document Suite", icon: <ListChecks size={18} />  },
-  { name: "AI Assistant Training Hub ", icon: <HeadphonesIcon   size={18} />, path: "/dashboard" },
-  { name: "Induction Flow Builder", icon: <Settings size={18} />, path: "/settings" },
-  { name: "Compliance Dashboard", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Survey & Feedback Management", icon: <Pen size={18} />, path: "/settings" },
-    { name: "User & Role management", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Organization Settings & Branding", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Audit Mode Access", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Language a7 Accessibility", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Reports & Logs", icon: <ChevronRight size={18} />, path: "/audit" },
+    { name: "Org Dashboard", icon: <ChevronRight />, path: "/" },
+    { name: "Document Suite", icon: <ChevronRight />, path: "/documents" },
   ],
-  // SuperAdmin Sidebar
   superadmin: [
-    { name: "platform Dashboard", icon: <ChevronRight size={18} />, path: "/superadmin" },
-    { name: "Document Suite Library", icon: <Settings size={18} />, path: "/settings" },
-    { name: "AI & Automation Settings", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Organizations Manager", icon: <Settings size={18} />, path: "/settings" },
-        { name: "System Settings", icon: <ChevronRight size={18} />, path: "/system-settings" },
-    { name: "Audit Logs", icon: <ChevronRight size={18} />, path: "/audit" },
-    { name: "Team & Access Control", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Communication Hub", icon: <Settings size={18} />, path: "/settings" },
-    { name: "Compliance & Privacy", icon: <Settings size={18} />, path: "/settings" },
-    { name: "AI Bot Training & Knowledge Hub", icon: <Settings size={18} />, path: "/settings" },
-    { name: "AI Module Settings", icon: <Settings size={18} />, path: "/settings" },
-    { name: "AI Version Control & Logs", icon: <Settings size={18} />, path: "/settings" },
+    { name: "Platform Dashboard", icon: <ChevronRight />, path: "/superadmin" },
   ],
 };
 
@@ -74,46 +49,106 @@ const Sidebar: React.FC<SidebarProps> = ({
   role = "user",
   brandName = "CareBot",
   className = "",
-  // widthClass = "w-64",
 }) => {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
- const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleMenu = (name: string) =>
     setOpenMenus((prev) => ({ ...prev, [name]: !prev[name] }));
 
-  // Select menu items based on role
   const navItems = useMemo(() => menuConfig[role] || [], [role]);
 
- return (
-    <div c>
-      {/* Mobile top bar */}
-      <div className="sm:hidden flex items-center justify-between bg-white p-4 shadow-md fixed top-0 left-0 right-0 z-50">
-        <div className="text-xl font-bold text-blue-600">{brandName}</div>
-        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden fixed top-4 left-4 z-50">
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="p-2 rounded bg-white shadow"
+        >
+          <Menu size={24} />
         </button>
       </div>
 
-      {/* Sidebar */}
-      <aside
-        className={`bg-white h-screen border-r fixed top-0 z-40 transform transition-transform duration-300
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        sm:translate-x-0 sm:static sm:block  ${className}`}
-      >
-        {/* Desktop brand name */}
-        <div className="p-4 text-xl font-bold text-blue-600 border-b hidden sm:block">
-          {brandName}
-        </div>
+      {/* Sidebar Drawer for Mobile */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          <div
+            className="absolute inset-0 bg-black/30"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+          <aside className="relative w-64 bg-white h-full shadow p-4 overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-bold text-xl text-blue-600">{brandName}</span>
+              <button onClick={() => setIsSidebarOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
 
-        {/* Mobile brand name inside sidebar */}
-        <div className="p-4 text-xl font-bold text-blue-600 border-b sm:hidden flex justify-between items-center">
-          {brandName}
-          <button onClick={() => setIsSidebarOpen(false)}>
-            <X size={20} />
-          </button>
-        </div>
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item, idx) => {
+                const isOpen = openMenus[item.name] || false;
 
+                if (item.children) {
+                  return (
+                    <div key={idx}>
+                      <button
+                        onClick={() => toggleMenu(item.name)}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 w-full"
+                      >
+                        {item.icon}
+                        <span className="flex-1 text-left">{item.name}</span>
+                        {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                      </button>
+                      {isOpen && (
+                        <div className="ml-6 flex flex-col gap-1">
+                          {item.children.map((sub, subIdx) => (
+                            <NavLink
+                              key={subIdx}
+                              to={sub.path || "#"}
+                              onClick={() => setIsSidebarOpen(false)}
+                              className={({ isActive }) =>
+                                `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
+                                  isActive
+                                    ? "bg-blue-50 text-teal-700"
+                                    : "text-gray-500 hover:bg-gray-50"
+                                }`
+                              }
+                            >
+                              {sub.icon}
+                              {sub.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <NavLink
+                    key={idx}
+                    to={item.path || "#"}
+                    onClick={() => setIsSidebarOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2 rounded-md font-medium ${
+                        isActive ? "bg-blue-100 text-teal-700" : "text-gray-600 hover:bg-gray-100"
+                      }`
+                    }
+                  >
+                    {item.icon}
+                    {item.name}
+                  </NavLink>
+                );
+              })}
+            </nav>
+          </aside>
+        </div>
+      )}
+
+      {/* Desktop Sidebar */}
+      <aside className={`hidden lg:block w-64 bg-white border-r h-screen sticky top-0 ${className}`}>
+        <div className="p-4 text-xl font-bold text-blue-600 border-b">{brandName}</div>
         <nav className="flex flex-col gap-1 p-4 overflow-y-auto h-full">
           {navItems.map((item, idx) => {
             const isOpen = openMenus[item.name] || false;
@@ -130,17 +165,14 @@ const Sidebar: React.FC<SidebarProps> = ({
                     {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                   </button>
                   {isOpen && (
-                    <div className="ml-8 flex flex-col gap-1">
+                    <div className="ml-6 flex flex-col gap-1">
                       {item.children.map((sub, subIdx) => (
                         <NavLink
                           key={subIdx}
                           to={sub.path || "#"}
-                          onClick={() => setIsSidebarOpen(false)} // close on mobile click
                           className={({ isActive }) =>
                             `flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium ${
-                              isActive
-                                ? "bg-blue-50 text-teal-700"
-                                : "text-gray-500 hover:bg-gray-50"
+                              isActive ? "bg-blue-50 text-teal-700" : "text-gray-500 hover:bg-gray-50"
                             }`
                           }
                         >
@@ -158,12 +190,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               <NavLink
                 key={idx}
                 to={item.path || "#"}
-                onClick={() => setIsSidebarOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-md font-medium ${
-                    isActive
-                      ? "bg-blue-100 text-teal-700"
-                      : "text-gray-600 hover:bg-gray-100"
+                    isActive ? "bg-blue-100 text-teal-700" : "text-gray-600 hover:bg-gray-100"
                   }`
                 }
               >
@@ -174,15 +203,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           })}
         </nav>
       </aside>
-
-      {/* Overlay for mobile when sidebar is open */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 sm:hidden z-30"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-    </div>
+    </>
   );
 };
 
