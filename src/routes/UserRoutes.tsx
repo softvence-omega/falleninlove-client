@@ -5,9 +5,9 @@ import Sidebar from "@/components/reusable/SideBar";
 
 const UserRoute: React.FC = () => {
   return (
-    <div className="flex min-h-screen mt-16">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
-      <aside className="hidden lg:block w-64 bg-white shadow-lg">
+      <aside className="hidden lg:block w-64 bg-white shadow-lg mt-5">
         <Sidebar role="user" brandName="CareBot" className="h-full" />
       </aside>
 
