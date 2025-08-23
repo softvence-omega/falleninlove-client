@@ -1,11 +1,11 @@
-import circleBg from "../assets/bannerImg/bg-left.png"; // left circle background
-import gridBg from "../assets/bannerImg/bg-right.png"; // right grid background
-import dashboard from "../assets/bannerImg/dashboard-banner.png"; // dashboard screenshot
-import bgBlur from "../assets/bannerImg/bg-blur.png"; // blur background
+import circleBg from "../assets/bannerImg/bg-left.png"; 
+import gridBg from "../assets/bannerImg/bg-right.png";
+import dashboard from "../assets/bannerImg/dashboard-banner.png"; 
+import bgBlur from "../assets/bannerImg/bg-blur.png"; 
 
 export default function Hero() {
   return (
-    <div className="relative  overflow-hidden h-[700px] lg:h-[800px] bg-gray-200">
+    <div className="relative  overflow-hidden h-[700px] lg:h-[800px] bg-gray-200 mt-16">
       {/* Blur Background at Bottom */}
       <img
         src={bgBlur}

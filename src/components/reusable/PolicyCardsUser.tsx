@@ -53,7 +53,7 @@ const PolicyCards: React.FC<PolicyCardsProps> = ({}) => {
 ];
 
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif" }} className="min-h-screen mx-auto">
+    <div style={{ fontFamily: "'Poppins', sans-serif" }} className="min-h-screen mx-auto mt-16">
     <div className="grid grid-cols-5 gap-0 min-h-screen">
       <div className="col-span-5 sm:col-span-1 sticky top-0 h-screen">  <Sidebar navItems={navItems} brandName="CareBot" className="h-full" /></div>
     
