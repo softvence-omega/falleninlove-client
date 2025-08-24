@@ -1,18 +1,18 @@
-// src/routes/UserRoute.tsx
 import React from "react";
 import { Outlet } from "react-router-dom";
-import AdminSideBar from "@/components/Admin/AdminSideBar";
+import UserNavbar from "@/components/User/UserNavbar";
+import SideBar from "@/components/reusable/SideBar";
 
 const SuperAdminRoutes: React.FC = () => {
   return (
     <>
       {/* Navbar */}
-      {/* <UserNavbar /> */}
+      <UserNavbar />
 
       {/* Main Dashboard Layout */}
       <div className="flex min-h-screen mt-16">
         {/* Sidebar */}
-        <AdminSideBar role="superadmin" />
+        <SideBar role="superadmin" />
 
         {/* Main Content (fills remaining space) */}
         <main className="flex-1 p-6">
