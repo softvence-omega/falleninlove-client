@@ -1,5 +1,5 @@
 const AdminDashboard = () => {
-  return <div className="text-3xl">AdminDashboard</div>;
+  return <div className="text-3xl">AdminDashboard (Organization Dashboard)</div>;
 };
 
 export default AdminDashboard;

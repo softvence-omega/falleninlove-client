@@ -17,6 +17,7 @@ import {
   Cog,
   FolderOpen,
   Bookmark,
+  User,
 } from "lucide-react";
 
 export interface NavItem {
@@ -54,10 +55,34 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "Language & Accessibility", icon: <Globe size={20} />, path: "settings" },
     { name: "Help & Support", icon: <HelpCircle size={20} />, path: "supports" },
   ],
-  admin: [
-    { name: "Org Dashboard", icon: <Home size={20} />, path: "/" },
-    { name: "Document Suite", icon: <FileText size={20} />, path: "/documents" },
+   admin: [
+    { name: "Org Dashboard", icon: <Home size={20} />, path: "/admin" },
+    {
+      name: "Document Suite",
+      icon: <FileText size={20} />,
+      children: [
+        { name: "Policies", icon: <FileCheck size={18} />, path: "admin-policies" },
+        { name: "Procedures", icon: <Cog size={18} />, path: "admin-procedures" },
+        { name: "Guidelines", icon: <BookOpen size={18} />, path: "admin-guidelines" },
+        { name: "SOPs", icon: <Shield size={18} />, path: "admin-sops" },
+        { name: "Forms", icon: <FileText size={18} />, path: "admin-forms" },
+        { name: "Checklists", icon: <FileCheck size={18} />, path: "admin-checklists" },
+        { name: "Work Instructions", icon: <FolderOpen size={18} />, path: "admin-work-instructions" },
+        { name: "Training Materials", icon: <BookOpen size={18} />, path: "admin-training-materials" },
+        { name: "Others", icon: <Bookmark size={18} />, path: "admin-others" },
+      ],
+    },
+    { name: "AI Assistant Training Hub", icon: <Bot size={20} />, path: "admin-ai-training" },
+    { name: "Induction Flow Builder", icon: <Mic size={20} />, path: "admin-induction" },
+    { name: "Compliance Dashboard", icon: <Shield size={20} />, path: "admin-compliance" },
+    { name: "Survey & Feedback Management", icon: <HeartPulse size={20} />, path: "admin-survey-feedback" },
+    { name: "User & Role Management", icon: <User size={20} />, path: "admin-user-role" },
+    { name: "Organisation Settings & Branding", icon: <Cog size={20} />, path: "admin-org-settings" },
+    { name: "Audit Mode Access", icon: <Shield size={20} />, path: "admin-audit" },
+    { name: "Language", icon: <Globe size={20} />, path: "admin-language" },
+    { name: "Reports & Logs", icon: <FileText size={20} />, path: "admin-reports" },
   ],
+
   superadmin: [
     { name: "Platform Dashboard", icon: <Home size={20} />, path: "/superadmin" },
   ],

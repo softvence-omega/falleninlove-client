@@ -1,80 +1,3 @@
-// import { createBrowserRouter } from "react-router-dom";
-// import App from "../App";
-// import About from "../pages/About";
-// import Contact from "../pages/Contact";
-// import NotFound from "../pages/NotFound";
-// import Home from "../pages/Home";
-// import AdminRoute from "./AdminRoutes";
-// import AdminDashboard from "@/pages/Admin/AdminDashboard";
-// import Login from "@/pages/Login";
-// import Signup from "@/pages/Signup";
-// import Form from "@/pages/Form";
-// import Services from "@/pages/Services";
-
-// import PolicyCards from "@/components/reusable/PolicyCardsUser";
-// import Dashboard from "@/pages/HomeDashboardUser";
-
-
-
-// const routes = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       {
-//         path: "/",
-//         element: <Home />,
-//       },
-//       {
-//         path: "/about",
-//         element: <About />,
-//       },
-//       {
-//         path: "/contact",
-//         element: <Contact />,
-//       },
-//       {
-//         path: "/services",
-//         element: <Services />,
-//       },
-//       {
-//         path: "/userdash",
-//         element: <Dashboard/>,
-       
-//       },
-//       {
-//         path: "/policyadmin",
-//         element: <PolicyCards />,
-//       },
-//       {
-//         path: "/form",
-//         element: <Form />,
-//       },
-//       {
-//         path: "/login",
-//         element: <Login />,
-//       },
-//       {
-//         path: "/signup",
-//         element: <Signup />,
-//       },
-//       {
-//         path: "/admin",
-//         element: <AdminRoute />, 
-//         children: [
-//           { path: "", element: <AdminDashboard /> }, // Admin Dashboard
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     path: "*",
-//     element: <NotFound />,
-//   },
-// ]);
-
-// export default routes;
-
 
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
@@ -102,6 +25,14 @@ import SurveyWellbeing from "@/components/SurveyWellbeing";
 import Settings from "@/components/Settings";
 import Supports from "@/components/Supports";
 import HomeDashboardUser from "@/pages/HomeDashboardUser";
+import AdminPolicy from "@/components/Admin/AdminPolicy";
+import AdminProcedure from "@/components/Admin/AdminProcedure";
+import AdminGuideline from "@/components/Admin/AdminGuideline";
+import AdminSops from "@/components/Admin/AdminSops";
+import AdminForms from "@/components/Admin/AdminForms";
+import AdminChecklist from "@/components/Admin/AdminChecklist";
+import AdminWorkInstruction from "@/components/Admin/AdminWorkInstruction";
+import AdminTraining from "@/components/Admin/AdminTraining";
 
 const routes = createBrowserRouter([
   {
@@ -141,6 +72,24 @@ const routes = createBrowserRouter([
         element: <AdminRoute />,
         children: [
           { path: "", element: <AdminDashboard /> },
+          {path: "admin-policies", element: <AdminPolicy/> },
+          {path: "admin-procedures", element: <AdminProcedure/> },
+          {path: "admin-guidelines", element: <AdminGuideline/> },
+          {path: "admin-sops", element: <AdminSops/> },
+          {path: "admin-forms", element: <AdminForms/> },
+          {path: "admin-checklists", element: <AdminChecklist/> },
+          {path: "admin-work-instructions", element: <AdminWorkInstruction/> },
+          {path: "admin-training-materials", element: <AdminTraining/> },
+          {path: "admin-others", element: <div>Admin Others</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-document-suit", element: <div>document suit admin</div> },
         ],
       },
       // 🔹 Admin Dashboard Routes
