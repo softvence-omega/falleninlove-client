@@ -1,6 +1,10 @@
+import LanguageAndAccessability from "./User/LangusageAndAccessability/languageAndAccessability";
 
 export default function Settings() {
   return (
-    <div>Language and Accessibility</div>
+    <div>
+
+      <LanguageAndAccessability></LanguageAndAccessability>
+    </div>
   )
 }

@@ -90,9 +90,9 @@ function EmergencyProceduer() {
                             <div className=" pt-4">
                                 <button
                                     onClick={() => handleContinueModule(procedure.id)}
-                                    className={`w-full py-2.5  rounded-md font-medium text-sm transition-colors duration-200 ${procedure.featured
+                                    className={`w-full py-2.5  cursor-pointer  rounded-md font-medium text-sm transition-colors duration-200 ${procedure.featured
                                             ? 'bg-[#2CBCA4] text-white  '
-                                            : 'border border-gray-300 text-gray-700 bg-white '
+                                            : 'border border-gray-300 text-gray-700 bg-white hover:bg-[#2CBCA4] hover:text-white '
                                         }`}
                                 >
                                     Continue Module
