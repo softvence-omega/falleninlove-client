@@ -59,6 +59,8 @@ import SuperAdminAiTraining from "@/pages/SuperAdmin/SuperAdminMainComponents/Su
 import SuperAdminAiModule from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAiModule";
 import SuperAdminAiVersionControl from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAiVersionControl";
 import SuperAdminRatingFeed from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminRatingFeed";
+import UserProfile from "@/components/User/Profile/UserProfile";
+import UserSettings from "@/components/User/Profile/UserSettings";
 
 
 const routes = createBrowserRouter([
@@ -92,6 +94,8 @@ const routes = createBrowserRouter([
           {path:"survey-well-being",element:<SurveyWellbeing/>},
           {path:"settings",element:<Settings/>},
           {path:"supports",element:<Supports/>},
+          {path:"profile",element: <UserProfile/>},
+          {path:"profile-settings",element: <UserSettings/>},
         ],
       },
          {
