@@ -18,6 +18,7 @@ import {
   FolderOpen,
   Bookmark,
   User,
+  ArrowLeftCircle,
 } from "lucide-react";
 
 export interface NavItem {
@@ -55,7 +56,7 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "Language & Accessibility", icon: <Globe size={20} />, path: "settings" },
     { name: "Help & Support", icon: <HelpCircle size={20} />, path: "supports" },
   ],
-   admin: [
+  admin: [
     { name: "Org Dashboard", icon: <Home size={20} />, path: "/admin" },
     {
       name: "Document Suite",
@@ -82,8 +83,7 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "Language", icon: <Globe size={20} />, path: "admin-language" },
     { name: "Reports & Logs", icon: <FileText size={20} />, path: "admin-reports" },
   ],
-
-   superadmin: [
+  superadmin: [
     { name: "Platform Dashboard", icon: <Home size={20} />, path: "/super-admin" },
     {
       name: "Document Suite Library",
@@ -107,7 +107,6 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "AI Module Settings", icon: <Cog size={20} />, path: "superadmin-ai-module" },
     { name: "AI Version Control & Logs", icon: <FileText size={20} />, path: "superadmin-ai-version-control" },
   ],
-
 };
 
 const SideBar: React.FC<SidebarProps> = ({
@@ -123,28 +122,26 @@ const SideBar: React.FC<SidebarProps> = ({
 
   const navItems = useMemo(() => menuConfig[role] || [], [role]);
 
-  // Helper function to check if any child is active
   const isChildActive = (children: NavItem[]) => {
     return children.some(child => window.location.pathname === child.path);
   };
 
   return (
-    <>
+    <div className="mt-16">
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="fixed top-18 left-2 z-50 p-2 bg-transparent rounded-lg  lg:hidden"
+        className="fixed top-18 left-2 z-50 p-2 bg-transparent rounded-lg lg:hidden"
       >
         {isMobileOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
 
       {/* Mobile Sidebar */}
-      <div className={`lg:hidden ${isMobileOpen ? 'block' : 'hidden'}`}>
-        <div 
+      <div className={`lg:hidden ${isMobileOpen ? "block" : "hidden"}`}>
+        <div
           className="fixed inset-0 z-40 bg-black/50"
           onClick={() => setIsMobileOpen(false)}
         />
-        
         <aside className="fixed top-0 left-0 z-50 w-80 h-full bg-white shadow-xl">
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between p-6 border-b">
@@ -155,11 +152,9 @@ const SideBar: React.FC<SidebarProps> = ({
                 <X size={20} />
               </button>
             </div>
-
-            <nav className="flex-1 px-6  overflow-y-auto">
+            <nav className="flex-1 px-6 overflow-y-auto">
               {navItems.map((item, idx) => {
                 const isOpen = openMenus[item.name] || false;
-
                 if (item.children) {
                   return (
                     <div key={idx}>
@@ -167,70 +162,59 @@ const SideBar: React.FC<SidebarProps> = ({
                         onClick={() => toggleMenu(item.name)}
                         className="flex items-center gap-4 w-full py-3 text-left text-gray-700 hover:text-teal-600 transition-colors"
                       >
-                        <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                        <div className="flex-shrink-0 text-gray-500">
+                          {item.icon}
+                        </div>
                         <span className="flex-1 font-medium">{item.name}</span>
-                        <ChevronDown 
-                          size={16} 
-                          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                        <ChevronDown
+                          size={16}
+                          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
                         />
                       </button>
                       {isOpen && (
                         <div className="ml-12 space-y-2 mt-2">
                           {item.children.map((sub, subIdx) => (
-                            <div key={subIdx} className="relative">
-                              <NavLink
-                                to={sub.path || "#"}
-                                onClick={() => setIsMobileOpen(false)}
-                                className={({ isActive }) =>
-                                  `flex items-center gap-3 py-2 font-medium transition-colors ${
-                                    isActive
-                                      ? "text-teal-600"
-                                      : "text-gray-600 hover:text-teal-600"
-                                  }`
-                                }
-                              >
-                                {({ isActive }) => (
-                                  <>
-                                    <div className="flex-shrink-0 text-gray-500">{sub.icon}</div>
-                                    {sub.name}
-                                    {isActive && (
-                                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
-                                    )}
-                                  </>
-                                )}
-                              </NavLink>
-                            </div>
+                            <NavLink
+                              key={subIdx}
+                              to={sub.path || "#"}
+                              onClick={() => setIsMobileOpen(false)}
+                              className={({ isActive }) =>
+                                `flex items-center gap-3 py-2 font-medium transition-colors ${
+                                  isActive
+                                    ? "text-teal-600"
+                                    : "text-gray-600 hover:text-teal-600"
+                                }`
+                              }
+                            >
+                              <div className="flex-shrink-0 text-gray-500">
+                                {sub.icon}
+                              </div>
+                              {sub.name}
+                            </NavLink>
                           ))}
                         </div>
                       )}
                     </div>
                   );
                 }
-
                 return (
-                  <div key={idx} className="relative">
-                    <NavLink
-                      to={item.path || "#"}
-                      onClick={() => setIsMobileOpen(false)}
-                      className={({ isActive }) =>
-                        `flex items-center gap-4 py-3 font-medium transition-colors ${
-                          isActive
-                            ? "text-teal-600"
-                            : "text-gray-700 hover:text-teal-600"
-                        }`
-                      }
-                    >
-                      {({ isActive }) => (
-                        <>
-                          <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
-                          <span>{item.name}</span>
-                          {isActive && (
-                            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
-                          )}
-                        </>
-                      )}
-                    </NavLink>
-                  </div>
+                  <NavLink
+                    key={idx}
+                    to={item.path || "#"}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-4 py-3 font-medium transition-colors ${
+                        isActive
+                          ? "text-teal-600"
+                          : "text-gray-700 hover:text-teal-600"
+                      }`
+                    }
+                  >
+                    <div className="flex-shrink-0 text-gray-500">
+                      {item.icon}
+                    </div>
+                    <span>{item.name}</span>
+                  </NavLink>
                 );
               })}
             </nav>
@@ -240,135 +224,117 @@ const SideBar: React.FC<SidebarProps> = ({
 
       {/* Desktop Sidebar */}
       <aside
-        className={`hidden lg:block bg-white border-r h-screen sticky top-0 transition-all duration-300 ${
+        className={`hidden lg:flex flex-col bg-white border-r h-screen sticky top-0 transition-all duration-300 ${
           isExpanded ? "w-72" : "w-16"
         } ${className}`}
       >
-        <div className="flex flex-col h-full">
-          {/* Header with Menu Toggle */}
-          <div className={` ${isExpanded ? 'px-6 py-6' : 'px-2 py-6 flex justify-center'}`}>
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
-            >
-              <Menu size={20} />
-            </button>
-          </div>
+        {/* Header with Arrow on right */}
+        <div className={`${isExpanded ? "px-6 py-4" : "px-2 py-4 flex justify-center"}`}>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="ml-auto p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <ArrowLeftCircle size={20} className={`${!isExpanded ? "rotate-180" : ""}`} />
+          </button>
+        </div>
 
-          {/* Navigation */}
-          <nav className={`flex-1 overflow-y-auto ${isExpanded ? 'px-6 py-6' : 'px-2 py-6'}`}>
-            <div className={`${isExpanded ? 'space-y-3' : 'space-y-2'}`}>
-              {navItems.map((item, idx) => {
-                const isOpen = openMenus[item.name] || false;
-                const hasActiveChild = item.children && isChildActive(item.children);
+        {/* Navigation */}
+        <nav className={`${isExpanded ? "px-6 py-4" : "px-2 py-4"}`}>
+          <div className={`${isExpanded ? "space-y-2" : "space-y-2"}`}>
+            {navItems.map((item, idx) => {
+              const isOpen = openMenus[item.name] || false;
+              const hasActiveChild = item.children && isChildActive(item.children);
 
-                if (item.children) {
-                  if (!isExpanded) {
-                    return (
-                      <div key={idx} className="flex justify-center">
-                        <button
-                          className={`p-3 rounded-lg transition-colors ${
-                            hasActiveChild
-                              ? "bg-teal-100 text-teal-600"
-                              : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
-                          }`}
-                          title={item.name}
-                        >
-                          {item.icon}
-                        </button>
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <div key={idx}>
-                      <button
-                        onClick={() => toggleMenu(item.name)}
-                        className={`flex items-center gap-4 w-full py-3 text-left font-medium transition-colors ${
-                          isOpen || hasActiveChild ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
-                        }`}
-                      >
-                        <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
-                        <span className="flex-1">{item.name}</span>
-                        <ChevronDown 
-                          size={16} 
-                          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                        />
-                      </button>
-                      {isOpen && (
-                        <div className="ml-12 space-y-2 mt-2">
-                          {item.children.map((sub, subIdx) => (
-                            <NavLink
-                              key={subIdx}
-                              to={sub.path || "#"}
-                              className={({ isActive }) =>
-                                `flex items-center gap-3 py-2 font-medium transition-colors ${
-                                  isActive
-                                    ? "text-teal-600"
-                                    : "text-gray-600 hover:text-teal-600"
-                                }`
-                              }
-                            >
-                              <div className="flex-shrink-0 text-gray-500">{sub.icon}</div>
-                              {sub.name}
-                            </NavLink>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
-                return (
+              if (item.children) {
+                return isExpanded ? (
                   <div key={idx}>
-                    {!isExpanded ? (
-                      <div className="flex justify-center">
-                        <NavLink
-                          to={item.path || "#"}
-                          className={({ isActive }) =>
-                            `p-3 rounded-lg transition-colors ${
-                              isActive
-                                ? "bg-teal-100 text-teal-600"
-                                : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
-                            }`
-                          }
-                          title={item.name}
-                        >
-                          {item.icon}
-                        </NavLink>
-                      </div>
-                    ) : (
-                      <div className="relative">
-                        <NavLink
-                          to={item.path || "#"}
-                          className={({ isActive }) =>
-                            `flex items-center gap-4 py-3 font-medium transition-colors ${
-                              isActive
-                                ? "text-teal-600"
-                                : "text-gray-700 hover:text-teal-600"
-                            }`
-                          }
-                        >
-                          {({ isActive }) => (
-                            <>
-                              <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
-                              <span>{item.name}</span>
-                              {isActive && (
-                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600" />
-                              )}
-                            </>
-                          )}
-                        </NavLink>
+                    <button
+                      onClick={() => toggleMenu(item.name)}
+                      className={`flex items-center gap-4 w-full py-3 text-left font-medium transition-colors ${
+                        isOpen || hasActiveChild ? "text-teal-600" : "text-gray-700 hover:text-teal-600"
+                      }`}
+                    >
+                      <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                      <span className="flex-1">{item.name}</span>
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="ml-12 space-y-2 mt-2">
+                        {item.children.map((sub, subIdx) => (
+                          <NavLink
+                            key={subIdx}
+                            to={sub.path || "#"}
+                            className={({ isActive }) =>
+                              `flex items-center gap-3 py-2 font-medium transition-colors ${
+                                isActive
+                                  ? "text-teal-600"
+                                  : "text-gray-600 hover:text-teal-600"
+                              }`
+                            }
+                          >
+                            <div className="flex-shrink-0 text-gray-500">{sub.icon}</div>
+                            {sub.name}
+                          </NavLink>
+                        ))}
                       </div>
                     )}
                   </div>
+                ) : (
+                  <div key={idx} className="flex justify-center">
+                    <button
+                      className={`p-3 rounded-lg transition-colors ${
+                        hasActiveChild
+                          ? "bg-teal-100 text-teal-600"
+                          : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
+                      }`}
+                      title={item.name}
+                    >
+                      {item.icon}
+                    </button>
+                  </div>
                 );
-              })}
-            </div>
-          </nav>
-        </div>
+              }
+
+              return isExpanded ? (
+                <NavLink
+                  key={idx}
+                  to={item.path || "#"}
+                  className={({ isActive }) =>
+                    `flex items-center gap-4 py-3 font-medium transition-colors ${
+                      isActive
+                        ? "text-teal-600"
+                        : "text-gray-700 hover:text-teal-600"
+                    }`
+                  }
+                >
+                  <div className="flex-shrink-0 text-gray-500">{item.icon}</div>
+                  <span>{item.name}</span>
+                </NavLink>
+              ) : (
+                <div key={idx} className="flex justify-center">
+                  <NavLink
+                    to={item.path || "#"}
+                    className={({ isActive }) =>
+                      `p-3 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-teal-100 text-teal-600"
+                          : "text-gray-500 hover:bg-gray-100 hover:text-teal-600"
+                      }`
+                    }
+                    title={item.name}
+                  >
+                    {item.icon}
+                  </NavLink>
+                </div>
+              );
+            })}
+          </div>
+        </nav>
       </aside>
-    </>
+    </div>
   );
 };
 
