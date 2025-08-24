@@ -48,7 +48,7 @@ function KnowledgeBaseSearchAndFaq() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className=" py-8 px-4">
       <div className=" mx-auto">
         {/* Search Section */}
         <div className=" rounded-lg shadow-sm border border-[#FF6A0066] p-6 mb-8">

@@ -7,7 +7,7 @@ const Layout: React.FC = () => {
   return (
     <div>
       {isRoleUser && <UserNavbar />}
-      <main>
+      <main >
         <Outlet />
       </main>
     </div>
