@@ -1,4 +1,5 @@
-import LanguageAndAccessability from "./User/LangusageAndAccessability/languageAndAccessability";
+import LanguageAndAccessability from "./User/LangusageAndAccessability/LanguageAndAccessability";
+
 
 export default function Settings() {
   return (
