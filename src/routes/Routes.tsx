@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import AdminRoute from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
+import SuperAdminRoutes from "./SuperAdminRoutes";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
@@ -43,6 +44,23 @@ import AdminOrganization from "@/components/Admin/AdminOrganization";
 import AdminAudit from "@/components/Admin/AdminAudit";
 import AdminLanguage from "@/components/Admin/AdminLanguage";
 import AdminReports from "@/components/Admin/AdminReports";
+import SuperAdminDashboard from "@/pages/SuperAdmin/SuperAdminDashboard";
+import SuperAdminDoc from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminDoc";
+import SuperAdminMasterTemp from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminMasterTemp";
+import SuperAdminDocLifecycle from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminDocLifecycle";
+import SuperAdminUsageInsight from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminUsageInsight";
+import SuperAdminAutomation from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAutomation";
+import SuperAdminOrg from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminOrg";
+import SuperAdminSystem from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminSystem";
+import SuperAdminAudit from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAudit";
+import SuperAdminTeamAccess from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminTeamAccess";
+import SuperAdminCommunication from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminCommunication";
+import SuperAdminCompliance from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminCompliance";
+import SuperAdminAiTraining from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAiTraining";
+import SuperAdminAiModule from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAiModule";
+import SuperAdminAiVersionControl from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminAiVersionControl";
+import SuperAdminRatingFeed from "@/pages/SuperAdmin/SuperAdminMainComponents/SuperAdminRatingFeed";
+
 
 const routes = createBrowserRouter([
   {
@@ -100,6 +118,29 @@ const routes = createBrowserRouter([
           {path: "admin-audit", element: <AdminAudit/> },
           {path: "admin-language", element: <AdminLanguage/> },
           {path: "admin-reports", element: <AdminReports/> },
+        ],
+      },
+      {
+        path:"/super-admin",
+        element: <SuperAdminRoutes/>,
+        children:[
+          {path: "", element: <SuperAdminDashboard/>},
+          {path:"superadmin-doc-upload", element: <SuperAdminDoc/>},
+          {path:"superadmin-master-templates", element: <SuperAdminMasterTemp/>},
+          {path:"superadmin-doc-lifecycle", element: <SuperAdminDocLifecycle/>},
+          {path:"superadmin-usage-insights", element: <SuperAdminUsageInsight/>},
+          {path:"superadmin-rating-feedback", element: <SuperAdminRatingFeed/>},
+
+          {path:"superadmin-ai-automation", element: <SuperAdminAutomation/>},
+          {path:"superadmin-org-manager", element: <SuperAdminOrg/>},
+          {path:"superadmin-system-settings", element: <SuperAdminSystem/>},
+          {path:"superadmin-audit-logs", element: <SuperAdminAudit/>},
+          {path:"superadmin-team-access", element: <SuperAdminTeamAccess/>},
+          {path:"superadmin-communication", element: <SuperAdminCommunication/>},
+          {path:"superadmin-compliance-privacy", element: <SuperAdminCompliance/>},
+          {path:"superadmin-ai-training", element: <SuperAdminAiTraining/>},
+          {path:"superadmin-ai-module", element: <SuperAdminAiModule/>},
+          {path:"superadmin-ai-version-control", element: <SuperAdminAiVersionControl/>},
         ],
       },
       // 🔹 Admin Dashboard Routes

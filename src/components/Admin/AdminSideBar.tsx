@@ -83,9 +83,31 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "Reports & Logs", icon: <FileText size={20} />, path: "admin-reports" },
   ],
 
-  superadmin: [
-    { name: "Platform Dashboard", icon: <Home size={20} />, path: "/superadmin" },
+   superadmin: [
+    { name: "Platform Dashboard", icon: <Home size={20} />, path: "/super-admin" },
+    {
+      name: "Document Suite Library",
+      icon: <FileText size={20} />,
+      children: [
+        { name: "Document Upload", icon: <FileCheck size={18} />, path: "superadmin-doc-upload" },
+        { name: "Master Templates", icon: <BookOpen size={18} />, path: "superadmin-master-templates" },
+        { name: "Document Lifecycle Management", icon: <FolderOpen size={18} />, path: "superadmin-doc-lifecycle" },
+        { name: "Usage Insights", icon: <HeartPulse size={18} />, path: "superadmin-usage-insights" },
+        { name: "Rating & Feedback", icon: <Bookmark size={18} />, path: "superadmin-rating-feedback" },
+      ],
+    },
+    { name: "AI & Automation Settings", icon: <Bot size={20} />, path: "superadmin-ai-automation" },
+    { name: "Organisations Manager", icon: <Mic size={20} />, path: "superadmin-org-manager" },
+    { name: "System Settings", icon: <Cog size={20} />, path: "superadmin-system-settings" },
+    { name: "Audit Logs", icon: <FileText size={20} />, path: "superadmin-audit-logs" },
+    { name: "Team & Access Control", icon: <User size={20} />, path: "superadmin-team-access" },
+    { name: "Communication Hub", icon: <Globe size={20} />, path: "superadmin-communication" },
+    { name: "Compliance & Privacy", icon: <Shield size={20} />, path: "superadmin-compliance-privacy" },
+    { name: "AI Bot Training & Knowledge Hub", icon: <BookOpen size={20} />, path: "superadmin-ai-training" },
+    { name: "AI Module Settings", icon: <Cog size={20} />, path: "superadmin-ai-module" },
+    { name: "AI Version Control & Logs", icon: <FileText size={20} />, path: "superadmin-ai-version-control" },
   ],
+
 };
 
 const AdminSideBar: React.FC<SidebarProps> = ({
@@ -134,7 +156,7 @@ const AdminSideBar: React.FC<SidebarProps> = ({
               </button>
             </div>
 
-            <nav className="flex-1 px-6 py-6 space-y-3 overflow-y-auto">
+            <nav className="flex-1 px-6  overflow-y-auto">
               {navItems.map((item, idx) => {
                 const isOpen = openMenus[item.name] || false;
 
