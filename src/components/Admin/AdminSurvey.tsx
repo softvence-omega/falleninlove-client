@@ -1,6 +1,10 @@
+import EngagementOverview from "../AdminDashboard/AdminSurvey/EngagementOverview";
 
 export default function AdminSurvey() {
   return (
-    <div>AdminSurvey</div>
+    <div>
+      <EngagementOverview></EngagementOverview>
+
+    </div>
   )
 }
