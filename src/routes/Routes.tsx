@@ -33,6 +33,16 @@ import AdminForms from "@/components/Admin/AdminForms";
 import AdminChecklist from "@/components/Admin/AdminChecklist";
 import AdminWorkInstruction from "@/components/Admin/AdminWorkInstruction";
 import AdminTraining from "@/components/Admin/AdminTraining";
+import AdminOthers from "@/components/Admin/AdminOthers";
+import AdminAiTraining from "@/components/Admin/AdminAiTraining";
+import AdminInduction from "@/components/Admin/AdminInduction";
+import AdminCompliance from "@/components/Admin/AdminCompliance";
+import AdminSurvey from "@/components/Admin/AdminSurvey";
+import AdminUserRole from "@/components/Admin/AdminUserRole";
+import AdminOrganization from "@/components/Admin/AdminOrganization";
+import AdminAudit from "@/components/Admin/AdminAudit";
+import AdminLanguage from "@/components/Admin/AdminLanguage";
+import AdminReports from "@/components/Admin/AdminReports";
 
 const routes = createBrowserRouter([
   {
@@ -80,16 +90,16 @@ const routes = createBrowserRouter([
           {path: "admin-checklists", element: <AdminChecklist/> },
           {path: "admin-work-instructions", element: <AdminWorkInstruction/> },
           {path: "admin-training-materials", element: <AdminTraining/> },
-          {path: "admin-others", element: <div>Admin Others</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
-          {path: "admin-document-suit", element: <div>document suit admin</div> },
+          {path: "admin-others", element: <AdminOthers/> },
+          {path: "admin-ai-training", element: <AdminAiTraining/> },
+          {path: "admin-induction", element: <AdminInduction/> },
+          {path: "admin-compliance", element: <AdminCompliance/> },
+          {path: "admin-survey-feedback", element: <AdminSurvey/> },
+          {path: "admin-user-role", element: <AdminUserRole/> },
+          {path: "admin-org-settings", element: <AdminOrganization/>},
+          {path: "admin-audit", element: <AdminAudit/> },
+          {path: "admin-language", element: <AdminLanguage/> },
+          {path: "admin-reports", element: <AdminReports/> },
         ],
       },
       // 🔹 Admin Dashboard Routes
