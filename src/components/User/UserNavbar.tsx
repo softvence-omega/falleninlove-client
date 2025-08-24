@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, Bell, ChevronDown, User, Settings, Globe, HelpCircle, LogOut } from 'lucide-react';
 
 import logo from "../../assets/user/logo.png"
+import { Link } from 'react-router-dom';
 
 const UserNavbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -103,10 +104,12 @@ const UserNavbar: React.FC = () => {
                     <div className="text-sm font-semibold text-gray-900">Armand gopro</div>
                     <div className="text-xs text-gray-500">armand.gopro@caresuite.com.au</div>
                   </div>
+                 <Link to={"/userdash/profile"}>
                   <button className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-3">
                     <User className="w-4 h-4 text-gray-500" />
                     <span>View Profile</span>
                   </button>
+                 </Link>
                   <button className="w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-3">
                     <Settings className="w-4 h-4 text-gray-500" />
                     <span>Settings</span>
