@@ -224,7 +224,7 @@ const SideBar: React.FC<SidebarProps> = ({
 
       {/* Desktop Sidebar */}
       <aside
-        className={`hidden lg:flex flex-col bg-white border-r h-screen sticky top-0 transition-all duration-300 ${
+        className={`hidden lg:flex flex-col bg-white shadow h-screen sticky top-0 transition-all duration-300 ${
           isExpanded ? "w-72" : "w-16"
         } ${className}`}
       >
