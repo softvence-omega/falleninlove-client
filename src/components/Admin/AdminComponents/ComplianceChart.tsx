@@ -214,7 +214,7 @@ function ComplianceChart(): JSX.Element {
   return (
     <div className="space-y-6">
       {/* Compliance Score Trend Chart */}
-      <div className="bg-white rounded-2xl border border-orange-200 p-3 sm:p-4 lg:p-6">
+      <div className="bg-white rounded-2xl border border-yellow-400 p-3 sm:p-4 lg:p-6">
         <h2 className="text-base sm:text-lg font-medium text-gray-500 mb-4">
           Compliance Score Trend
         </h2>

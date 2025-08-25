@@ -81,7 +81,7 @@ export default function AdminReports() {
           <h2 className="text-xl font-semibold text-gray-700 mb-4">Engagement Overview</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {reportCards.map((card, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl border border-orange-400">
+              <div key={index} className="bg-white p-6 rounded-xl border border-yellow-400">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}</h3>
                 <p className="text-gray-500 text-sm mb-4">{card.description}</p>
                 <button className="w-full bg-teal-500 text-white font-medium py-2 px-4 rounded-xl shadow hover:bg-emerald-600 transition-colors">
@@ -93,7 +93,7 @@ export default function AdminReports() {
         </div>
 
         {/* System Logs Section - Updated to match new design */}
-        <div className="bg-white p-6 rounded-2xl shadow-md border border-orange-400">
+        <div className="bg-white p-6 rounded-2xl shadow-md border border-yellow-400">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">System Logs</h2>
           <div className="flex justify-between items-center mb-4">
             {/* Export button updated with teal background and white text */}
@@ -101,7 +101,7 @@ export default function AdminReports() {
               <Download className="w-4 h-4 mr-2" />
               Export All Logs (CSV)
             </button>
-            <div className="relative border border-orange-400 rounded-xl">
+            <div className="relative border border-yellow-400 rounded-xl">
   <input
     type="text"
     placeholder="Search Logs..."

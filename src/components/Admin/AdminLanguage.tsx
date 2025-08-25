@@ -51,7 +51,7 @@ export default function AdminLanguage() {
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-left text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-300 transition-colors duration-200 flex items-center justify-between"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-left text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-yellow-400 transition-colors duration-200 flex items-center justify-between"
             >
               <span>{selectedLanguageLabel}</span>
               <ChevronDown 

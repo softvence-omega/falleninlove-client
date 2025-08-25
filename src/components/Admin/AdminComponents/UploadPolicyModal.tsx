@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { X, ChevronDown } from "lucide-react";
 
 interface UploadPolicyModalProps {
@@ -12,8 +12,12 @@ export default function UploadPolicyModal({
 }: UploadPolicyModalProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedFileType, setSelectedFileType] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
   const [showForm, setShowForm] = useState(false);
-  
+
+  // File input ref
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   // Form state
   const [summary, setSummary] = useState("AI Generated Summary............");
   const [category, setCategory] = useState("");
@@ -26,21 +30,44 @@ export default function UploadPolicyModal({
 
   const categories = [
     "Safety",
-    "HR", 
+    "HR",
     "Clinical",
     "Compliance",
     "Operations",
     "IT",
     "Governance",
-    "Others"
+    "Others",
   ];
 
   if (!isOpen) return null;
 
+  // ✅ Dropdown select → open form
   const handleFileTypeSelect = (fileType: string) => {
     setSelectedFileType(fileType);
     setDropdownOpen(false);
     setShowForm(true);
+  };
+
+  // ✅ Choose File button → open file picker
+  const handleChooseFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const picked = e.target.files?.[0] || null;
+    if (picked) {
+      setFile(picked);
+
+      // Infer type if not chosen manually
+      if (!selectedFileType) {
+        const ext = picked.name.split(".").pop()?.toLowerCase();
+        if (ext === "pdf") setSelectedFileType("PDF");
+        else if (ext === "doc") setSelectedFileType("DOC");
+        else if (ext === "docx") setSelectedFileType("DOCX");
+      }
+
+      setShowForm(true); // ✅ open form
+    }
   };
 
   const handleCategorySelect = (selectedCategory: string) => {
@@ -51,6 +78,7 @@ export default function UploadPolicyModal({
   const handleCancel = () => {
     setShowForm(false);
     setSelectedFileType("");
+    setFile(null);
     // Reset form
     setSummary("AI Generated Summary............");
     setCategory("");
@@ -61,15 +89,15 @@ export default function UploadPolicyModal({
   };
 
   const handleUploadDocument = () => {
-    // Handle document upload logic here
     console.log({
       fileType: selectedFileType,
+      file,
       summary,
       category,
       tags,
       version,
       expireDate,
-      status
+      status,
     });
     onClose();
   };
@@ -91,20 +119,33 @@ export default function UploadPolicyModal({
         </h2>
 
         {!showForm ? (
-          // File Selection Section - Original Design
+          // File Selection Section
           <div className="mb-6">
             <label className="block text-base text-gray-600 mb-4">
               Select Document File:
             </label>
 
-            <div className="flex gap-3 border rounded-xl border-orange-300">
+            <div className="flex gap-3 border rounded-xl border-yellow-400 items-center">
               {/* Choose File Button */}
-              <div className="flex-1">
+              <div className="flex-1 flex items-center gap-3">
                 <button
+                  onClick={handleChooseFileClick}
                   className="w-36 bg-gray-700 hover:bg-gray-600 text-white text-left px-4 py-3 m-1 rounded-lg transition-colors text-base"
                 >
                   Choose File
                 </button>
+                {file && (
+                  <span className="text-sm text-gray-700 truncate">
+                    {file.name}
+                  </span>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
               </div>
 
               {/* Dropdown Button */}
@@ -122,19 +163,19 @@ export default function UploadPolicyModal({
                     <div className="bg-teal-500 text-white px-3 py-2 text-sm font-medium">
                       Select File
                     </div>
-                    <button 
+                    <button
                       onClick={() => handleFileTypeSelect("PDF")}
                       className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       PDF
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleFileTypeSelect("DOC")}
                       className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       DOC
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleFileTypeSelect("DOCX")}
                       className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                     >
@@ -150,6 +191,7 @@ export default function UploadPolicyModal({
             </p>
           </div>
         ) : (
+          // Form
           <div className="space-y-6">
             {/* Summary */}
             <div>
@@ -159,7 +201,7 @@ export default function UploadPolicyModal({
               <textarea
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
-                className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none bg-gray-50"
+                className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none bg-gray-50"
                 rows={4}
               />
             </div>
@@ -172,9 +214,11 @@ export default function UploadPolicyModal({
               <div className="relative">
                 <button
                   onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
                 >
-                  <span className={category ? "text-gray-900" : "text-gray-500"}>
+                  <span
+                    className={category ? "text-gray-900" : "text-gray-500"}
+                  >
                     {category || "Select a category"}
                   </span>
                   <ChevronDown className="w-4 h-4 text-gray-400" />
@@ -199,9 +243,8 @@ export default function UploadPolicyModal({
               </div>
             </div>
 
-            {/* Tags and Version Row */}
+            {/* Tags + Version */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Tags */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Tags (Comma-Separated):
@@ -210,11 +253,10 @@ export default function UploadPolicyModal({
                   type="text"
                   value={tags}
                   onChange={(e) => setTags(e.target.value)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
               </div>
 
-              {/* Version */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Version:
@@ -223,14 +265,13 @@ export default function UploadPolicyModal({
                   type="text"
                   value={version}
                   onChange={(e) => setVersion(e.target.value)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
               </div>
             </div>
 
-            {/* Expire Date and Status Row */}
+            {/* Expire Date + Status */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Expire Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Expire Date:
@@ -241,17 +282,11 @@ export default function UploadPolicyModal({
                     value={expireDate}
                     onChange={(e) => setExpireDate(e.target.value)}
                     placeholder="mm / dd / yyyy"
-                    className="w-full px-3 py-2 pr-10 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full px-3 py-2 pr-10 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
                 </div>
               </div>
 
-              {/* Status */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Status:
@@ -259,7 +294,7 @@ export default function UploadPolicyModal({
                 <div className="relative">
                   <button
                     onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
-                    className="w-full px-3 py-2 border border-orange-300 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
+                    className="w-full px-3 py-2 border border-yellow-400 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
                   >
                     <span className="text-gray-900">{status}</span>
                     <ChevronDown className="w-4 h-4 text-gray-400" />
@@ -291,7 +326,7 @@ export default function UploadPolicyModal({
               </div>
             </div>
 
-            {/* Action Buttons */}
+            {/* Actions */}
             <div className="flex justify-end gap-3 pt-4">
               <button
                 onClick={handleCancel}

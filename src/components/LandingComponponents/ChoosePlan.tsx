@@ -19,7 +19,7 @@ export default function ChoosePlan() {
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`border border-orange-300 rounded-lg flex flex-col transition-transform duration-300
+              className={`border border-yellow-400 rounded-lg flex flex-col transition-transform duration-300
                 ${
                   plan.highlight
                     ? "scale-105 lg:scale-110 z-10"

@@ -26,7 +26,7 @@ interface AiPolicyInputProps {
 
 const AiPolicyInput: React.FC<AiPolicyInputProps> = ({ inputMessage, setInputMessage, handleSendMessage }) => {
   return (
-    <div className="p-6 border border-orange-300  rounded-xl  bg-gray-50">
+    <div className="p-6 border border-yellow-400  rounded-xl  bg-gray-50">
       {/* Input and Buttons Section */}
       <div className="flex items-center space-x-2 sm:space-x-4 ">
         <input
@@ -101,7 +101,7 @@ const AiPolicyUserDash = () => {
           </h1>
         </div>
         {/* Chat Messages Container */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-4 border border-orange-300 rounded-xl">
+        <div className="flex-1 p-6 overflow-y-auto space-y-4 border border-yellow-400 rounded-xl">
           {messages.map((message) => (
             <div
               key={message.id}

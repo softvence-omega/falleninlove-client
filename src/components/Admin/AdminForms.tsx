@@ -11,7 +11,7 @@ export default function AdminForms() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="space-y-6">
         {/* Disclaimer + Actions */}
-        <div className="bg-orange-50 rounded-lg border border-orange-200 p-6">
+        <div className="bg-orange-50 rounded-lg border border-yellow-400 p-6">
           {/* Disclaimer */}
           <div className="flex items-start gap-3 mb-6">
             <AlertTriangle className="h-5 w-5 text-orange-500 mt-0.5 flex-shrink-0" />

@@ -78,14 +78,14 @@ const PolicyCardsUser = () => {
                   placeholder="Search by keyword, policy name, or topic..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 border border-orange-300 rounded-lg  transition-colors"
+                  className="w-full px-4 py-3 border border-yellow-400 rounded-lg  transition-colors"
                 />
               </div>
 
               <div className="relative sm:w-52" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full px-4 py-3 flex justify-between items-center border border-orange-300 rounded-lg text-orage-500 bg-white "
+                  className="w-full px-4 py-3 flex justify-between items-center border border-yellow-400 rounded-lg text-orage-500 bg-white "
                 >
                   <span className="truncate">{selectedCategory}</span>
                   <ChevronDown className={`ml-2 flex-shrink-0 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} size={16} />
@@ -124,7 +124,7 @@ const PolicyCardsUser = () => {
                 {policiesToDisplay.map((policy) => (
                   <div 
                     key={policy.id} 
-                    className="group bg-white border border-orange-300 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+                    className="group bg-white border border-yellow-400 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
                   >
                     <div className="p-4 sm:p-6 h-[315px] flex flex-col">
                       <div className="flex-1">

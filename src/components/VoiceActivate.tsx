@@ -4,7 +4,7 @@ const VoiceActivate = () => {
   return (
     <div className="max-w-7xl mx-auto mt-12">
       {/* Full-width container (fills outlet) */}
-      <div className="w-full bg-white border border-orange-300 rounded-2xl p-6 sm:p-10 text-center">
+      <div className="w-full bg-white border border-yellow-400 rounded-2xl p-6 sm:p-10 text-center">
         {/* Header Section */}
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
           Voice-Activated Companion
