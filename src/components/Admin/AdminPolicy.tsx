@@ -6,6 +6,7 @@ import UploadPolicyModal from "./AdminComponents/UploadPolicyModal";
 export default function AdminPolicy() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeAction, setActiveAction] = useState<"upload" | "generate" | "download" | null>(null);
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -25,18 +26,50 @@ export default function AdminPolicy() {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-3 mb-6">
+            {/* Upload New Policy */}
             <button
-              onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-4 py-2.5 rounded-md font-medium transition-colors"
+              onClick={() => {
+                setIsModalOpen(true);
+                setActiveAction("upload");
+              }}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-md font-medium transition-colors
+                ${activeAction === "upload"
+                  ? "bg-teal-500 hover:bg-teal-600 text-white"
+                  : activeAction === "generate" || activeAction === "download"
+                  ? "bg-gray-100 text-gray-600 cursor-not-allowed"
+                  : "bg-teal-500 hover:bg-teal-600 text-white"
+                }`}
             >
               <Upload className="h-4 w-4" />
               Upload New Policy
             </button>
-            <button className="flex items-center gap-2 border-2 border-dashed border-teal-400 text-gray-700 px-4 py-2.5 rounded-md bg-white">
+
+            {/* Generate Policy (AI) */}
+            <button
+              onClick={() =>
+                setActiveAction(activeAction === "generate" ? null : "generate")
+              }
+              className={`flex items-center gap-2 border-2 border-dashed border-teal-400 px-4 py-2.5 rounded-md font-medium transition-colors
+                ${activeAction === "generate"
+                  ? "bg-teal-500 text-white"
+                  : "bg-white text-gray-700 hover:bg-teal-50"
+                }`}
+            >
               <FileText className="h-4 w-4" />
-              Generate Policy (Ai)
+              Generate Policy (AI)
             </button>
-            <button className="flex items-center gap-2 border-2 border-dashed border-teal-400 text-gray-700 px-4 py-2.5 rounded-md bg-white">
+
+            {/* Download All */}
+            <button
+              onClick={() => setActiveAction("download")}
+              className={`flex items-center gap-2 border-2 border-dashed border-teal-400 px-4 py-2.5 rounded-md font-medium transition-colors
+                ${activeAction === "download"
+                  ? "bg-teal-500 text-white"
+                  : activeAction === "generate"
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-white text-gray-700 hover:bg-teal-50"
+                }`}
+            >
               <Download className="h-4 w-4" />
               Download All
             </button>
@@ -56,8 +89,50 @@ export default function AdminPolicy() {
             />
           </div>
         </div>
+
         <AdminTable />
+
+        {/* Smart Policy Editor (AI) */}
+        {activeAction === "generate" && (
+          <div className="mt-6 border border-orange-300 rounded-lg p-6 bg-white shadow-sm">
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">
+              Smart Policy Editor (AI-Powered)
+            </h2>
+
+            <div className="space-y-4">
+              {/* Policy Title */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Policy Title:
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g., Incident Reporting Policy"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+
+              {/* Policy Content */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Policy Content:
+                </label>
+                <textarea
+                  placeholder="Start typing your policy or use AI to generate..."
+                  rows={5}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+
+              {/* Generate Button */}
+              <button className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md font-medium transition-colors">
+                Generate Policy
+              </button>
+            </div>
+          </div>
+        )}
       </div>
+
       {/* Reusable Modal */}
       <UploadPolicyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
