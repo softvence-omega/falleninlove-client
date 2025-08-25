@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { FaHeadset } from "react-icons/fa";
 import { GrStatusWarning } from "react-icons/gr";
-import { LiaClipboardListSolid } from "react-icons/lia";
+import { LiaClipboardListSolid, LiaHandshakeSolid } from "react-icons/lia";
 import { IoLanguage } from "react-icons/io5";
 import { PiHandshakeFill } from "react-icons/pi";
 import { FiGrid } from "react-icons/fi";
@@ -91,7 +91,7 @@ const menuConfig: Record<string, NavItem[]> = {
     { name: "Survey & Feedback Management", icon: <BsClipboardData size={24} />, path: "admin-survey-feedback" },
     { name: "User & Role Management", icon: <PiUserListBold size={24}/>,path: "admin-user-role" },
     { name: "Organisation Settings & Branding", icon: <Cog size={24} />, path: "admin-org-settings" },
-    { name: "Audit Mode Access", icon: <Shield size={24} />, path: "admin-audit" },
+    { name: "Audit Mode Access", icon:<LiaHandshakeSolid size={24}/>, path: "admin-audit" },
     { name: "Language", icon: <IoLanguage size={24}/>,path: "admin-language" },
     { name: "Reports & Logs", icon: <FileText size={24} />, path: "admin-reports" },
   ],
