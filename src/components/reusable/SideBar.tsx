@@ -82,7 +82,7 @@ const menuConfig: Record<string, NavItem[]> = {
         { name: "Others", icon: <Bookmark size={18} />, path: "admin-others" },
       ],
     },
-    { name: "AI Assistant Training Hub", icon: <FaHeadset size={24}/>, path: "admin-ai-training" },
+  
     { name: "Induction Flow Builder", icon: <Mic size={24} />, path: "admin-induction" },
     { name: "Compliance Dashboard", icon: <Shield size={24} />, path: "admin-compliance" },
     { name: "Survey & Feedback Management", icon: <HeartPulse size={24} />, path: "admin-survey-feedback" },

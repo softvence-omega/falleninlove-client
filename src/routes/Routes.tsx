@@ -34,7 +34,6 @@ import AdminChecklist from "@/components/Admin/AdminChecklist";
 import AdminWorkInstruction from "@/components/Admin/AdminWorkInstruction";
 import AdminTraining from "@/components/Admin/AdminTraining";
 import AdminOthers from "@/components/Admin/AdminOthers";
-import AdminAiTraining from "@/components/Admin/AdminAiTraining";
 import AdminInduction from "@/components/Admin/AdminInduction";
 import AdminCompliance from "@/components/Admin/AdminCompliance";
 import AdminSurvey from "@/components/Admin/AdminSurvey";
@@ -112,7 +111,6 @@ const routes = createBrowserRouter([
           {path: "admin-work-instructions", element: <AdminWorkInstruction/> },
           {path: "admin-training-materials", element: <AdminTraining/> },
           {path: "admin-others", element: <AdminOthers/> },
-          {path: "admin-ai-training", element: <AdminAiTraining/> },
           {path: "admin-induction", element: <AdminInduction/> },
           {path: "admin-compliance", element: <AdminCompliance/> },
           {path: "admin-survey-feedback", element: <AdminSurvey/> },

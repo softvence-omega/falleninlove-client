@@ -9,6 +9,7 @@ interface StatItem {
   label: string;
   value: string;
   sub: string;
+  color: string;
 }
 
 interface ComplianceAlert {
@@ -22,10 +23,10 @@ interface ComplianceAlert {
 const AdminDashboard: React.FC = () => {
   // Mock data with proper typing (replace with API later)
   const stats: StatItem[] = [
-    { label: "Induction Completion", value: "85%", sub: "Target: 95%" },
-    { label: "Policy Read Rates", value: "72%", sub: "Average across all policies" },
-    { label: "Compliance Alerts", value: "03", sub: "Action required" },
-    { label: "Survey Engagement", value: "72%", sub: "Average response rate" },
+    { label: "Induction Completion", value: "85%", sub: "Target: 95%", color: "text-blue-500"},
+    { label: "Policy Read Rates", value: "72%", sub: "Average across all policies",color: "text-orange-400" },
+    { label: "Compliance Alerts", value: "03", sub: "Action required",color: "text-green-500" },
+    { label: "Survey Engagement", value: "72%", sub: "Average response rate",color: "text-yellow-500" },
   ];
 
   const complianceAlerts: ComplianceAlert[] = [
@@ -55,7 +56,7 @@ const AdminDashboard: React.FC = () => {
           <Card key={i} className="border border-orange-200 shadow-sm bg-white">
             <CardContent className="p-4 flex flex-col items-center text-center">
               <p className="text-sm font-medium text-gray-600">{item.label}</p>
-              <p className="text-2xl font-bold mt-1 text-gray-900">{item.value}</p>
+              <p className={`text-2xl font-bold mt-1 ${item.color}`}>{item.value}</p>
               <p className="text-xs text-gray-500">{item.sub}</p>
             </CardContent>
           </Card>
