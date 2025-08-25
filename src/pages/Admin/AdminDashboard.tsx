@@ -53,7 +53,7 @@ const AdminDashboard: React.FC = () => {
       {/* Top stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((item, i) => (
-          <Card key={i} className="border border-orange-200 shadow-sm bg-white">
+          <Card key={i} className="border border-yellow-400 shadow-sm bg-white">
             <CardContent className="p-4 flex flex-col items-center text-center">
               <p className="text-sm font-medium text-gray-600">{item.label}</p>
               <p className={`text-2xl font-bold mt-1 ${item.color}`}>{item.value}</p>

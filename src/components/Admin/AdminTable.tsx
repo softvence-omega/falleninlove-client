@@ -44,7 +44,7 @@ function AdminTable() {
   return (
     <div>
       {/* Document Library Card */}
-        <div className="bg-white rounded-lg border border-orange-300">
+        <div className="bg-white rounded-lg border border-yellow-400">
           <div className="p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Your Document Library</h2>
             
@@ -138,7 +138,7 @@ function AdminTable() {
             {/* Document Rows */}
             <div className="space-y-4">
               {documents.map((doc) => (
-                <div key={doc.id} className="grid grid-cols-6 gap-4 py-3 hover:bg-gray-50 transition-colors  border-b border-orange-300">
+                <div key={doc.id} className="grid grid-cols-6 gap-4 py-3 hover:bg-gray-50 transition-colors  border-b border-yellow-400">
                   <div className="font-medium text-gray-900 text-sm">
                     {doc.title}
                   </div>

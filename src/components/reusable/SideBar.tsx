@@ -27,6 +27,9 @@ import { IoLanguage } from "react-icons/io5";
 import { PiHandshakeFill } from "react-icons/pi";
 import { FiGrid } from "react-icons/fi";
 import { LuScrollText } from "react-icons/lu";
+import { BiSolidBarChartAlt2 } from "react-icons/bi";
+import { BsClipboardData } from "react-icons/bs";
+import { PiUserListBold } from "react-icons/pi";
 
 export interface NavItem {
   name: string;
@@ -84,12 +87,12 @@ const menuConfig: Record<string, NavItem[]> = {
     },
   
     { name: "Induction Flow Builder", icon: <Mic size={24} />, path: "admin-induction" },
-    { name: "Compliance Dashboard", icon: <Shield size={24} />, path: "admin-compliance" },
-    { name: "Survey & Feedback Management", icon: <HeartPulse size={24} />, path: "admin-survey-feedback" },
-    { name: "User & Role Management", icon: <User size={24} />, path: "admin-user-role" },
+    { name: "Compliance Dashboard", icon: <BiSolidBarChartAlt2 size={24}/>,path: "admin-compliance" },
+    { name: "Survey & Feedback Management", icon: <BsClipboardData size={24} />, path: "admin-survey-feedback" },
+    { name: "User & Role Management", icon: <PiUserListBold size={24}/>,path: "admin-user-role" },
     { name: "Organisation Settings & Branding", icon: <Cog size={24} />, path: "admin-org-settings" },
     { name: "Audit Mode Access", icon: <Shield size={24} />, path: "admin-audit" },
-    { name: "Language", icon: <Globe size={24} />, path: "admin-language" },
+    { name: "Language", icon: <IoLanguage size={24}/>,path: "admin-language" },
     { name: "Reports & Logs", icon: <FileText size={24} />, path: "admin-reports" },
   ],
   superadmin: [

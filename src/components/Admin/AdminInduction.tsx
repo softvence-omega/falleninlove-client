@@ -79,7 +79,7 @@ export default function AdminInduction(): JSX.Element {
 
         {/* Performance Overview */}
         <div className="mb-8">
-          <div className="bg-white rounded-xl border border-orange-400 p-8">
+          <div className="bg-white rounded-xl border border-yellow-400 p-8">
             <h2 className="text-xl font-semibold text-gray-700 mb-8">
               AI Performance Overview
             </h2>
@@ -133,7 +133,7 @@ export default function AdminInduction(): JSX.Element {
         </div>
 
         {/* Document Library (table layout) */}
-        <div className="bg-white rounded-xl shadow-sm border border-orange-400">
+        <div className="bg-white rounded-xl shadow-sm border border-yellow-400">
           <div className="flex justify-between items-center p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-800">
               Your Document Library
@@ -208,7 +208,7 @@ export default function AdminInduction(): JSX.Element {
 
         {/* ✅ FORM BELOW THE DOCUMENT LIBRARY */}
         {showNewFlowForm && (
-          <div className="mt-8 border border-orange-300 rounded-xl bg-white p-6">
+          <div className="mt-8 border border-yellow-400 rounded-xl bg-white p-6">
             <h3 className="text-lg font-semibold mb-4">
               Build / Edit Induction Flow
             </h3>
@@ -221,7 +221,7 @@ export default function AdminInduction(): JSX.Element {
               <input
                 type="text"
                 placeholder="New Carer Induction"
-                className="w-full mt-1 p-2 border border-orange-300 rounded-md"
+                className="w-full mt-1 p-2 border border-yellow-400 rounded-md"
               />
             </div>
 
@@ -232,7 +232,7 @@ export default function AdminInduction(): JSX.Element {
               </label>
               <textarea
                 placeholder="Brief Description of This Induction Flow."
-                className="w-full mt-1 p-2 border border-orange-300 rounded-md"
+                className="w-full mt-1 p-2 border border-yellow-400 rounded-md"
               ></textarea>
             </div>
 
@@ -241,7 +241,7 @@ export default function AdminInduction(): JSX.Element {
               <label className="block text-sm font-medium text-gray-700">
                 Assign to Roles
               </label>
-              <div className="p-3 border border-orange-300 rounded-md">
+              <div className="p-3 border border-yellow-400 rounded-md">
                 All Staff, Carer, Support Worker, Registered Nurse, Facility
                 Manager, Compliance Officer
               </div>
@@ -256,7 +256,7 @@ export default function AdminInduction(): JSX.Element {
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="p-4 border border-orange-300 rounded-md space-y-2"
+                    className="p-4 border border-yellow-400 rounded-md space-y-2"
                   >
                     <p className="font-semibold text-gray-800">
                       Step {index + 1}
@@ -268,7 +268,7 @@ export default function AdminInduction(): JSX.Element {
                       onChange={(e) =>
                         handleStepChange(index, "title", e.target.value)
                       }
-                      className="w-full p-2 border border-orange-300 rounded-md"
+                      className="w-full p-2 border border-yellow-400 rounded-md"
                     />
                     <textarea
                       placeholder="Step Description"
@@ -276,7 +276,7 @@ export default function AdminInduction(): JSX.Element {
                       onChange={(e) =>
                         handleStepChange(index, "description", e.target.value)
                       }
-                      className="w-full p-2 border border-orange-300 rounded-md"
+                      className="w-full p-2 border border-yellow-400 rounded-md"
                     />
                     <input
                       type="text"
@@ -285,7 +285,7 @@ export default function AdminInduction(): JSX.Element {
                       onChange={(e) =>
                         handleStepChange(index, "content", e.target.value)
                       }
-                      className="w-full p-2 border border-orange-300 rounded-md"
+                      className="w-full p-2 border border-yellow-400 rounded-md"
                     />
                     <input
                       type="date"
@@ -293,7 +293,7 @@ export default function AdminInduction(): JSX.Element {
                       onChange={(e) =>
                         handleStepChange(index, "dueDate", e.target.value)
                       }
-                      className="w-full p-2 border border-orange-300 rounded-md"
+                      className="w-full p-2 border border-yellow-400 rounded-md"
                     />
                   </div>
                 ))}

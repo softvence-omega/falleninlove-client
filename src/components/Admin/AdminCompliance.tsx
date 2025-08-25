@@ -98,7 +98,7 @@ export default function AdminCompliance() {
               <select 
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-3 border border-orange-300 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
+                className="px-4 py-3 border border-yellow-400 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
               >
                 <option>All Status</option>
                 <option>Open</option>
@@ -108,7 +108,7 @@ export default function AdminCompliance() {
               <select 
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
-                className="px-4 py-3 border border-orange-300 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
+                className="px-4 py-3 border border-yellow-400 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
               >
                 <option>All Types</option>
                 <option>Policy Expiry</option>
@@ -119,7 +119,7 @@ export default function AdminCompliance() {
               <select 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-3 border border-orange-300 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
+                className="px-4 py-3 border border-yellow-400 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 flex-1"
               >
                 <option>Sort by : Date ( Newest)</option>
                 <option>Sort by : Date ( Oldest)</option>
@@ -139,7 +139,7 @@ export default function AdminCompliance() {
                 placeholder="Search Alerts"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-16 pr-4 py-3 border border-orange-300 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 w-full"
+                className="pl-16 pr-4 py-3 border border-yellow-400 rounded-2xl text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-orange-200 w-full"
               />
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function AdminCompliance() {
           </div>
 
           {/* actionable insights */}
-          <div className="bg-white rounded-2xl border border-orange-200 p-4 sm:p-6">
+          <div className="bg-white rounded-2xl border border-yellow-400 p-4 sm:p-6">
       <h2 className="text-base sm:text-lg font-medium text-gray-700 mb-6">
         Actionable Insights & Recommendations
       </h2>

@@ -97,7 +97,7 @@ export default function UploadPolicyModal({
               Select Document File:
             </label>
 
-            <div className="flex gap-3 border rounded-xl border-orange-300">
+            <div className="flex gap-3 border rounded-xl border-yellow-400">
               {/* Choose File Button */}
               <div className="flex-1">
                 <button
@@ -159,7 +159,7 @@ export default function UploadPolicyModal({
               <textarea
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
-                className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none bg-gray-50"
+                className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none bg-gray-50"
                 rows={4}
               />
             </div>
@@ -172,7 +172,7 @@ export default function UploadPolicyModal({
               <div className="relative">
                 <button
                   onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
                 >
                   <span className={category ? "text-gray-900" : "text-gray-500"}>
                     {category || "Select a category"}
@@ -210,7 +210,7 @@ export default function UploadPolicyModal({
                   type="text"
                   value={tags}
                   onChange={(e) => setTags(e.target.value)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
               </div>
 
@@ -223,7 +223,7 @@ export default function UploadPolicyModal({
                   type="text"
                   value={version}
                   onChange={(e) => setVersion(e.target.value)}
-                  className="w-full px-3 py-2 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -241,7 +241,7 @@ export default function UploadPolicyModal({
                     value={expireDate}
                     onChange={(e) => setExpireDate(e.target.value)}
                     placeholder="mm / dd / yyyy"
-                    className="w-full px-3 py-2 pr-10 border border-orange-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full px-3 py-2 pr-10 border border-yellow-400 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,7 +259,7 @@ export default function UploadPolicyModal({
                 <div className="relative">
                   <button
                     onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
-                    className="w-full px-3 py-2 border border-orange-300 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
+                    className="w-full px-3 py-2 border border-yellow-400 rounded-lg text-left bg-white hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 flex items-center justify-between"
                   >
                     <span className="text-gray-900">{status}</span>
                     <ChevronDown className="w-4 h-4 text-gray-400" />
