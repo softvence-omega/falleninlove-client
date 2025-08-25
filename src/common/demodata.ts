@@ -207,3 +207,132 @@ export const sortOptions: string[] = [
   "Training Material",
   "Others",
 ];
+
+
+// Types 
+export interface Flow {
+  id: string;
+  name: string;
+  description: string;
+  assignedRoles: string[];
+  steps: number;
+  status: "Publish" | "Draft" | "Inactive";
+  createdBy?: string;
+}
+
+export interface PerformanceOverview {
+  totalFlows: number;
+  activeFlows: number;
+  draftFlows: number;
+}
+
+// Mock data (replace with API later)
+export const mockPerformanceData: PerformanceOverview = {
+  totalFlows: 7,
+  activeFlows: 4,
+  draftFlows: 3,
+};
+
+export const mockFlows: Flow[] = [
+  {
+    id: "1",
+    name: "New Carer Induction",
+    description: "Standard induction for all new care staff.",
+    assignedRoles: ["Carer", "Support Worker"],
+    steps: 12,
+    status: "Publish",
+  },
+  {
+    id: "2",
+    name: "Facility Manager Onboarding",
+    description: "Specific induction for facility managers.",
+    assignedRoles: ["Facility Manager"],
+    steps: 8,
+    status: "Draft",
+  },
+  {
+    id: "3",
+    name: "New Carer Induction",
+    description: "Standard induction for all new care staff.",
+    assignedRoles: ["Carer", "Support Worker"],
+    steps: 12,
+    status: "Publish",
+  },
+];
+
+
+// complianceData
+
+export interface ComplianceAlert {
+  id: string;
+  type: string;
+  description: string;
+  date: string;
+  severity: 'High' | 'Medium' | 'Low';
+  status: 'Open' | 'Resolved';
+}
+
+// Exporting mock data
+export const mockAlerts: ComplianceAlert[] = [
+  {
+    id: 'CA-001',
+    type: 'Policy Expiry',
+    description: '"Fire Safety Procedures" policy due for review.',
+    date: '2025-07-15',
+    severity: 'High',
+    status: 'Open'
+  },
+  {
+    id: 'CA-002',
+    type: 'Training Gap',
+    description: '3 staff members require "Infection Control" training.',
+    date: '2025-07-10',
+    severity: 'Medium',
+    status: 'Open'
+  },
+  {
+    id: 'CA-003',
+    type: 'Incident Report',
+    description: 'Minor incident reported in Unit 3.',
+    date: '2025-07-08',
+    severity: 'Low',
+    status: 'Resolved'
+  }
+];
+
+
+
+// insightsData
+// Priority levels
+export type InsightPriority = 'Urgent' | 'High' | 'Medium' | 'Low';
+
+// Interface for insights
+export interface Insight {
+  priority: InsightPriority;
+  text: string;
+  isUrgent: boolean;
+}
+
+// Exported insights data
+export const insights: Insight[] = [
+  {
+    priority: 'Urgent',
+    text: 'Review "Fire Safety Procedures" policy (CA-001) immediately.',
+    isUrgent: true,
+  },
+  {
+    priority: 'High',
+    text: 'Assign "Infection Control" refresher training to 3 identified staff members.',
+    isUrgent: false,
+  },
+  {
+    priority: 'Medium',
+    text: 'Consider scheduling a comprehensive audit for Safety & Emergency Policies due to lower compliance.',
+    isUrgent: false,
+  },
+  {
+    priority: 'Low',
+    text: 'Ensure all new policies are tagged with relevant ACQS/NDIS standards for better tracking.',
+    isUrgent: false,
+  },
+];
