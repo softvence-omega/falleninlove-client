@@ -1,6 +1,10 @@
+import UserAndRoleMAngement from "../AdminDashboard/UserRoleManagement/UserAndRoleMAngement";
 
 export default function AdminUserRole() {
   return (
-    <div>AdminUserRole</div>
+    <div>
+      <UserAndRoleMAngement></UserAndRoleMAngement>
+
+    </div>
   )
 }
