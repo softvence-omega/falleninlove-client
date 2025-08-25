@@ -38,7 +38,7 @@ const UserAndRoleMAngement: React.FC = () => {
                             {/* Number */}
                             <p className="text-green-600 text-xl font-bold">72</p>
                             {/* Image */}
-                            <img src={group2} alt="group2" className="w-8 h-8" />
+                            <img src={group2} alt="group2" className="w-12 h-12" />
                         </div>
                     </div>
 
