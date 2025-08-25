@@ -137,3 +137,73 @@ export const plans: Plan[]  =  [
     lastUpdated: '2024-06-15',
   },
 ];
+
+
+// Document type definition(admin policy)
+export interface DocumentItem {
+  id: number;
+  title: string;
+  category: string;
+  tags: string[];
+  version: string;
+  expiryDate: string; // ISO date format (YYYY-MM-DD)
+  status: "Active" | "Expiring Soon" | "Expired"; // strict union type
+}
+
+// Documents data
+export const documents: DocumentItem[] = [
+  {
+    id: 1,
+    title: "Medication Management Policy V3.1",
+    category: "Clinical",
+    tags: ["ACOS", "Safety"],
+    version: "3.1",
+    expiryDate: "2026-01-15",
+    status: "Active",
+  },
+  {
+    id: 2,
+    title: "Emergency Procedures Handbook",
+    category: "Safety",
+    tags: ["ACOs"],
+    version: "2.0",
+    expiryDate: "2025-11-01",
+    status: "Active",
+  },
+  {
+    id: 3,
+    title: "Staff Onboarding Checklist",
+    category: "HR",
+    tags: ["Induction"],
+    version: "1.2",
+    expiryDate: "2026-01-15",
+    status: "Expiring Soon",
+  },
+];
+
+// Categories data
+export const categories: string[] = [
+  "All Categories",
+  "Clinical",
+  "Human Resource",
+  "Information Technology",
+  "Facility & Maintenance",
+  "Finance",
+  "Lifestyle",
+  "Governance & Risk",
+  "Incident Management",
+  "Work Health & Safety",
+  "Others",
+];
+
+// Sort options data
+export const sortOptions: string[] = [
+  "Policy",
+  "Procedure",
+  "Guideline",
+  "SOP",
+  "Checklist",
+  "Work Instruction",
+  "Training Material",
+  "Others",
+];
