@@ -12,14 +12,21 @@ import {
   Shield,
   HeartPulse,
   Globe,
-  HelpCircle,
   FileCheck,
   Cog,
   FolderOpen,
   Bookmark,
   User,
   ArrowLeftCircle,
+  LucideScrollText,
 } from "lucide-react";
+import { FaHeadset } from "react-icons/fa";
+import { GrStatusWarning } from "react-icons/gr";
+import { LiaClipboardListSolid } from "react-icons/lia";
+import { IoLanguage } from "react-icons/io5";
+import { PiHandshakeFill } from "react-icons/pi";
+import { FiGrid } from "react-icons/fi";
+import { LuScrollText } from "react-icons/lu";
 
 export interface NavItem {
   name: string;
@@ -37,10 +44,11 @@ interface SidebarProps {
 
 const menuConfig: Record<string, NavItem[]> = {
   user: [
-    { name: "Home Dashboard", icon: <Home size={20} />, path: "/userdash" },
+    { name: "Home Dashboard", icon: <Home size={24} />, path: "/userdash" },
     {
       name: "Policies & Procedures Suite",
-      icon: <FileText size={20} />,
+      icon: <LucideScrollText />
+ ,
       children: [
         { name: "Policies", icon: <FileCheck size={18} />, path: "policies" },
         { name: "Procedures", icon: <Cog size={18} />, path: "procedures" },
@@ -48,19 +56,20 @@ const menuConfig: Record<string, NavItem[]> = {
         { name: "Bookmarks", icon: <Bookmark size={18} />, path: "bookmarks" },
       ],
     },
-    { name: "AI Policy Assistant", icon: <Bot size={20} />, path: "ai-policy-assistant" },
-    { name: "Voice-Activated Companion", icon: <Mic size={20} />, path: "voice-activate-companion" },
-    { name: "Induction & Training", icon: <BookOpen size={20} />, path: "induction-training" },
-    { name: "Emergency Quick Access", icon: <Shield size={20} />, path: "emergency-access" },
-    { name: "Survey & Wellbeing", icon: <HeartPulse size={20} />, path: "survey-well-being" },
-    { name: "Language & Accessibility", icon: <Globe size={20} />, path: "settings" },
-    { name: "Help & Support", icon: <HelpCircle size={20} />, path: "supports" },
+    { name: "AI Policy Assistant", icon: <FaHeadset size={24}/>, path: "ai-policy-assistant" },
+    { name: "Voice-Activated Companion", icon: <Mic size={24} />, path: "voice-activate-companion" },
+    { name: "Induction & Training", icon: <BookOpen size={24} />, path: "induction-training" },
+    { name: "Emergency Quick Access", icon: <GrStatusWarning  size={24}/>,path: "emergency-access" },
+    { name: "Survey & Wellbeing", icon: <LiaClipboardListSolid size={24} />, path: "survey-well-being" },
+    { name: "Language & Accessibility", icon: <IoLanguage size={24} />
+, path: "settings" },
+    { name: "Help & Support", icon: <PiHandshakeFill size={24} />, path: "supports" },
   ],
   admin: [
-    { name: "Org Dashboard", icon: <Home size={20} />, path: "/admin" },
+    { name: "Org Dashboard", icon: <FiGrid size={24} />, path: "/admin" },
     {
       name: "Document Suite",
-      icon: <FileText size={20} />,
+      icon: <LuScrollText size={24} />,
       children: [
         { name: "Policies", icon: <FileCheck size={18} />, path: "admin-policies" },
         { name: "Procedures", icon: <Cog size={18} />, path: "admin-procedures" },
@@ -73,21 +82,21 @@ const menuConfig: Record<string, NavItem[]> = {
         { name: "Others", icon: <Bookmark size={18} />, path: "admin-others" },
       ],
     },
-    { name: "AI Assistant Training Hub", icon: <Bot size={20} />, path: "admin-ai-training" },
-    { name: "Induction Flow Builder", icon: <Mic size={20} />, path: "admin-induction" },
-    { name: "Compliance Dashboard", icon: <Shield size={20} />, path: "admin-compliance" },
-    { name: "Survey & Feedback Management", icon: <HeartPulse size={20} />, path: "admin-survey-feedback" },
-    { name: "User & Role Management", icon: <User size={20} />, path: "admin-user-role" },
-    { name: "Organisation Settings & Branding", icon: <Cog size={20} />, path: "admin-org-settings" },
-    { name: "Audit Mode Access", icon: <Shield size={20} />, path: "admin-audit" },
-    { name: "Language", icon: <Globe size={20} />, path: "admin-language" },
-    { name: "Reports & Logs", icon: <FileText size={20} />, path: "admin-reports" },
+    { name: "AI Assistant Training Hub", icon: <FaHeadset size={24}/>, path: "admin-ai-training" },
+    { name: "Induction Flow Builder", icon: <Mic size={24} />, path: "admin-induction" },
+    { name: "Compliance Dashboard", icon: <Shield size={24} />, path: "admin-compliance" },
+    { name: "Survey & Feedback Management", icon: <HeartPulse size={24} />, path: "admin-survey-feedback" },
+    { name: "User & Role Management", icon: <User size={24} />, path: "admin-user-role" },
+    { name: "Organisation Settings & Branding", icon: <Cog size={24} />, path: "admin-org-settings" },
+    { name: "Audit Mode Access", icon: <Shield size={24} />, path: "admin-audit" },
+    { name: "Language", icon: <Globe size={24} />, path: "admin-language" },
+    { name: "Reports & Logs", icon: <FileText size={24} />, path: "admin-reports" },
   ],
   superadmin: [
-    { name: "Platform Dashboard", icon: <Home size={20} />, path: "/super-admin" },
+    { name: "Platform Dashboard", icon: <Home size={24} />, path: "/super-admin" },
     {
       name: "Document Suite Library",
-      icon: <FileText size={20} />,
+      icon: <FileText size={24} />,
       children: [
         { name: "Document Upload", icon: <FileCheck size={18} />, path: "superadmin-doc-upload" },
         { name: "Master Templates", icon: <BookOpen size={18} />, path: "superadmin-master-templates" },
@@ -96,16 +105,16 @@ const menuConfig: Record<string, NavItem[]> = {
         { name: "Rating & Feedback", icon: <Bookmark size={18} />, path: "superadmin-rating-feedback" },
       ],
     },
-    { name: "AI & Automation Settings", icon: <Bot size={20} />, path: "superadmin-ai-automation" },
-    { name: "Organisations Manager", icon: <Mic size={20} />, path: "superadmin-org-manager" },
-    { name: "System Settings", icon: <Cog size={20} />, path: "superadmin-system-settings" },
-    { name: "Audit Logs", icon: <FileText size={20} />, path: "superadmin-audit-logs" },
-    { name: "Team & Access Control", icon: <User size={20} />, path: "superadmin-team-access" },
-    { name: "Communication Hub", icon: <Globe size={20} />, path: "superadmin-communication" },
-    { name: "Compliance & Privacy", icon: <Shield size={20} />, path: "superadmin-compliance-privacy" },
-    { name: "AI Bot Training & Knowledge Hub", icon: <BookOpen size={20} />, path: "superadmin-ai-training" },
-    { name: "AI Module Settings", icon: <Cog size={20} />, path: "superadmin-ai-module" },
-    { name: "AI Version Control & Logs", icon: <FileText size={20} />, path: "superadmin-ai-version-control" },
+    { name: "AI & Automation Settings", icon: <Bot size={24} />, path: "superadmin-ai-automation" },
+    { name: "Organisations Manager", icon: <Mic size={24} />, path: "superadmin-org-manager" },
+    { name: "System Settings", icon: <Cog size={24} />, path: "superadmin-system-settings" },
+    { name: "Audit Logs", icon: <FileText size={24} />, path: "superadmin-audit-logs" },
+    { name: "Team & Access Control", icon: <User size={24} />, path: "superadmin-team-access" },
+    { name: "Communication Hub", icon: <Globe size={24} />, path: "superadmin-communication" },
+    { name: "Compliance & Privacy", icon: <Shield size={24} />, path: "superadmin-compliance-privacy" },
+    { name: "AI Bot Training & Knowledge Hub", icon: <BookOpen size={24} />, path: "superadmin-ai-training" },
+    { name: "AI Module Settings", icon: <Cog size={24} />, path: "superadmin-ai-module" },
+    { name: "AI Version Control & Logs", icon: <FileText size={24} />, path: "superadmin-ai-version-control" },
   ],
 };
 
