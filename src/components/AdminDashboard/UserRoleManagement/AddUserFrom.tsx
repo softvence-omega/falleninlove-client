@@ -55,7 +55,7 @@ function  AddUserFrom() {
 
   return (
     <div className="  p-4">
-      <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-8 w-full ">
+      <div className=" rounded-lg border border-[#FFC399] shadow-sm p-8 w-full ">
         {/* Title */}
         <h2 className="text-lg font-medium text-gray-900 mb-6">Add New User</h2>
         
@@ -69,7 +69,7 @@ function  AddUserFrom() {
             value={formData.fullName}
             onChange={(e) => handleInputChange('fullName', e.target.value)}
             placeholder="Jane Doe"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2 border border-[#FFC399] rounded-md  text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
           />
         </div>
 
@@ -83,7 +83,7 @@ function  AddUserFrom() {
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             placeholder="jan.doe@example.com"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2 border border-[#FFC399] rounded-md  text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
           />
         </div>
 
@@ -96,7 +96,7 @@ function  AddUserFrom() {
             <button
               type="button"
               onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors flex items-center justify-between"
+              className="w-full px-3 py-2 border border-[#FFC399] rounded-md  text-gray-500 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors flex items-center justify-between"
             >
               <span className={formData.role ? 'text-gray-900' : 'text-gray-500'}>
                 {formData.role || 'Select Role'}

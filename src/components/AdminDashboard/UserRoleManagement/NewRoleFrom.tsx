@@ -41,7 +41,7 @@ export default function NewRoleForm() {
 
   return (
    <div className="p-4">
-     <div className=" bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+     <div className="  rounded-lg border border-[#FFC399] p-6 shadow-sm">
       <h2 className="text-lg font-medium text-gray-900 mb-6">Add New Role</h2>
 
       <div className="space-y-6">
@@ -56,7 +56,7 @@ export default function NewRoleForm() {
             placeholder="Jane Doe"
             value={roleName}
             onChange={(e) => setRoleName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-[#FFC399] rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
@@ -70,7 +70,7 @@ export default function NewRoleForm() {
             placeholder="Brief Description of This role's responsibilities."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full min-h-[80px] px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+            className="w-full min-h-[80px] px-3 py-2 border border-[#FFC399] rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
           />
         </div>
 
@@ -85,7 +85,7 @@ export default function NewRoleForm() {
                   id={key}
                   checked={checked}
                   onChange={(e) => handlePermissionChange(key, e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-[#FFC399] rounded"
                 />
                 <label htmlFor={key} className="text-sm text-gray-600 cursor-pointer">
                   View Documents
@@ -99,13 +99,13 @@ export default function NewRoleForm() {
      <div className="flex justify-end gap-3 pt-4 mx-12">
   <button
     onClick={handleCancel}
-    className="px-4 py-2 bg-red-500 text-white border border-red-500 rounded-md hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors "
+    className="px-4 py-2  text-white border border-[#FFC399] rounded-md bg-[#FF715B] cursor-pointer"
   >
     Cancel
   </button>
   <button
     onClick={handleCreateRole}
-    className="px-4 py-2 bg-green-500 text-white border border-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors "
+    className="px-4 py-2 bg-[#2CBCA4] text-white border border-[#FFC399] rounded-md cursor-pointer "
   >
     Create Role
   </button>
